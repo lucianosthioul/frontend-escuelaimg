@@ -1,0 +1,113 @@
+---
+// src/pages/noticias/[id].astro
+import Layout from '../../layouts/Layout.astro';
+
+// 1. GENERAR RUTAS ESTÁTICAS (Necesario en Astro SSG)
+export async function getStaticPaths() {
+    // Aquí repetiríamos los datos o los importaríamos de un archivo .json/.js compartido
+    const noticias = [
+        {
+            id: 'victoria-debate',
+            titulo: 'Primer Lugar en el Torneo Nacional de Debate',
+            fecha: '12 OCT 2023',
+            categoria: 'Académico',
+            imagen: 'https://images.unsplash.com/photo-1577985043696-8c949d8dc8d1?q=80&w=1974&auto=format&fit=crop',
+            contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...'
+        },
+        {
+            id: 'concierto-primavera',
+            titulo: 'Sinfonía de Primavera',
+            fecha: '28 SEP 2023',
+            categoria: 'Artes',
+            imagen: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop',
+            contenido: 'Música que llena el alma...'
+        },
+        {
+            id: 'nuevos-laboratorios',
+            titulo: 'Inauguración del Centro de Ciencias STEM',
+            fecha: '15 SEP 2023',
+            categoria: 'Campus',
+            imagen: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop',
+            contenido: 'Avances tecnológicos...'
+        },
+        {
+            id: 'visita-rector',
+            titulo: 'Visita Internacional de Universidades',
+            fecha: '10 SEP 2023',
+            categoria: 'Internacional',
+            imagen: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop',
+            contenido: 'Conexiones globales...'
+        }
+    ];
+
+    // Astro recorre este array y crea una pagina por cada objeto
+    return noticias.map((noticia) => ({
+        params: { id: noticia.id },
+        props: { noticia },
+    }));
+}
+
+// 2. OBTENER LOS DATOS PARA ESTA PÁGINA ESPECÍFICA
+const { noticia } = Astro.props;
+---
+
+<Layout title={noticia.titulo}>
+
+    <header class="relative w-full h-[60vh] min-h-[400px]">
+        <div class="absolute inset-0 bg-slate-900/40 z-10"></div> <img
+            src={noticia.imagen}
+            alt={noticia.titulo}
+            class="absolute inset-0 w-full h-full object-cover"
+    />
+
+        <div class="relative z-20 h-full max-w-4xl mx-auto px-6 flex flex-col justify-center text-center text-white">
+            <div class="mb-6 flex justify-center items-center gap-3 text-sm font-bold tracking-widest uppercase">
+                <span class="bg-white text-black px-3 py-1">{noticia.categoria}</span>
+                <span>{noticia.fecha}</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-serif italic leading-tight">
+                {noticia.titulo}
+            </h1>
+        </div>
+    </header>
+
+    <article class="max-w-2xl mx-auto px-6 py-20">
+
+        <p class="text-xl md:text-2xl font-serif text-slate-800 leading-relaxed mb-10 border-l-4 border-slate-900 pl-6 italic">
+            "Aquí iría un extracto o bajada importante de la noticia que resume de qué se trata el artículo en pocas palabras."
+        </p>
+
+        <div class="prose prose-lg prose-slate prose-headings:font-serif prose-a:text-blue-900 font-light text-slate-600">
+            <p>
+                Aquí es donde renderizarías el contenido real (`noticia.contenido`). Para mantener el estilo "Aiglon", fíjate que la columna de texto no es muy ancha (max-w-2xl). Esto hace que leer sea mucho más cómodo y elegante.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur <a href="#">viverra eros</a> vel lacus scelerisque, a facilisis sapien ornare. Nunc varius interdum lectus, sed fermentum ex varius ut.
+            </p>
+
+            <h3>Un subtítulo elegante</h3>
+            <p>
+                Etiam scelerisque iaculis felis, eu sollicitudin arcu hendrerit vitae. Aliquam eget dapibus nulla. In nulla enim, fermentum nec placerat hendrerit, sagittis et diam.
+            </p>
+
+            <blockquote>
+                <p>La educación es el arma más poderosa que puedes usar para cambiar el mundo.</p>
+            </blockquote>
+
+            <p>
+                Fusce dignissim aliquet justo, eget cursus risus. Sed id tortor et ipsum viverra mattis.
+            </p>
+        </div>
+
+        <div class="mt-20 pt-10 border-t border-slate-200 text-center">
+            <a href="/noticias" class="inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase hover:text-slate-600 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+                Volver a Noticias
+            </a>
+        </div>
+
+    </article>
+
+</Layout>

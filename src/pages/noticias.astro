@@ -1,0 +1,95 @@
+---
+
+import Layout from '../layouts/Layout.astro';
+
+// Datos falsos (Simulando una base de datos)
+const noticias = [
+    {
+        id: 'victoria-debate',
+        titulo: 'Primer Lugar en el Torneo Nacional de Debate',
+        fecha: '12 OCT 2023',
+        categoria: 'Académico',
+        imagen: 'https://images.unsplash.com/photo-1577985043696-8c949d8dc8d1?q=80&w=1974&auto=format&fit=crop',
+        resumen: 'Nuestros estudiantes demostraron una retórica excepcional y pensamiento crítico ante más de 50 instituciones.'
+    },
+    {
+        id: 'concierto-primavera',
+        titulo: 'Sinfonía de Primavera: Una Noche Mágica',
+        fecha: '28 SEP 2023',
+        categoria: 'Artes',
+        imagen: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop',
+        resumen: 'La orquesta del colegio deleitó a la comunidad con piezas de Vivaldi y composiciones originales.'
+    },
+    {
+        id: 'nuevos-laboratorios',
+        titulo: 'Inauguración del Centro de Ciencias STEM',
+        fecha: '15 SEP 2023',
+        categoria: 'Campus',
+        imagen: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop',
+        resumen: 'Tecnología de punta para los futuros ingenieros y científicos de nuestra comunidad.'
+    },
+    {
+        id: 'visita-rector',
+        titulo: 'Visita Internacional de Universidades',
+        fecha: '10 SEP 2023',
+        categoria: 'Internacional',
+        imagen: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop',
+        resumen: 'Representantes de Ivy League compartieron con nuestros alumnos de último año.'
+    }
+];
+---
+
+<Layout title="Noticias & Actualidad" navStyle="solid">
+
+    <div class="bg-slate-50 pt-32 pb-16 px-6 text-center">
+        <p class="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase mb-4">Nuestro Diario</p>
+        <h1 class="text-5xl md:text-6xl font-serif text-slate-900 italic">Actualidad & <span class="not-italic">Eventos</span></h1>
+    </div>
+
+    <section class="max-w-7xl mx-auto px-6 pb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+
+            {noticias.map((noticia, index) => (
+                // LÓGICA: Si es el index 0 (primera noticia), ocupa 2 columnas (md:col-span-2) para destacarla
+        <article class={`group cursor-pointer flex flex-col ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''}`}>
+
+                        <a href={`/noticias/${noticia.id}`} class="block overflow-hidden rounded-sm mb-6 relative aspect-[16/10]">
+                            <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition z-10"></div>
+                            <img
+                                    src={noticia.imagen}
+                                    alt={noticia.titulo}
+                                    class="w-full h-full object-cover transform transition duration-700 group-hover:scale-105"
+                            />
+                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-slate-900 text-[10px] font-bold tracking-widest uppercase px-3 py-1 z-20">
+                {noticia.categoria}
+              </span>
+                        </a>
+
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-4 text-xs text-slate-400 font-medium tracking-widest uppercase">
+                                <span>{noticia.fecha}</span>
+                                <span class="w-8 h-[1px] bg-slate-300"></span>
+                            </div>
+
+                            <h2 class={`font-serif text-slate-900 group-hover:text-slate-600 transition duration-300 ${index === 0 ? 'text-3xl md:text-4xl' : 'text-xl md:text-2xl'}`}>
+                                <a href={`/noticias/${noticia.id}`}>
+                                    {noticia.titulo}
+                                </a>
+                            </h2>
+
+                            <p class="text-slate-500 font-light leading-relaxed line-clamp-3">
+                                {noticia.resumen}
+                            </p>
+
+                            <a href={`/noticias/${noticia.id}`} class="inline-block pt-2 text-xs font-bold uppercase tracking-widest border-b border-slate-300 pb-1 hover:border-slate-900 transition mt-2">
+                                Leer Historia
+                            </a>
+                        </div>
+                    </article>
+            ))}
+
+        </div>
+    </section>
+</Layout>
+
+<script src="../assets/js/scroll.js"></script>
