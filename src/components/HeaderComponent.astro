@@ -1,0 +1,39 @@
+---
+// src/components/HeaderComponent.astro
+import logo from '../assets/images/logo.png'
+
+interface Props {
+    navStyle?: 'transparent' | 'solid';
+}
+
+const { navStyle = 'transparent' } = Astro.props;
+
+// LÓGICA CSS (Server Side):
+// Definimos las clases exactas para que coincidan con las que usa el JS después
+const solidClasses = "bg-white/90 backdrop-blur-md text-slate-900 shadow-sm py-4 border-gray-100";
+const transparentClasses = "bg-transparent text-white py-6 border-transparent";
+
+// Si navStyle es 'solid', usamos las clases sólidas. Si no, las transparentes.
+const initialClasses = navStyle === 'solid' ? solidClasses : transparentClasses;
+---
+
+<nav
+        id="navbar"
+        data-style={navStyle}
+        class={`fixed w-full z-50 top-0 px-8 flex justify-center items-center transition-all duration-500 border-b ${initialClasses}`}
+>
+
+    <div class="text-2xl font-bold tracking-widest uppercase">
+        <a href="/"><img src={logo.src} alt="Logo de la Escuela" class="h-15"></a>
+    </div>
+
+    <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide ml-12">
+        <a href="#" class="hover:opacity-70 transition">NOSOTROS</a>
+        <a href="#" class="hover:opacity-70 transition">ACADÉMICO</a>
+        <a href="#" class="hover:opacity-70 transition">ADMISIONES</a>
+        <a href="/noticias" class="hover:opacity-70 transition">NOTICIAS</a>
+    </div>
+
+</nav>
+
+<script src="../assets/js/scroll.js"></script>
