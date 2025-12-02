@@ -1,0 +1,77 @@
+[
+  {
+    "id": "arte-cultura",
+    "titulo": "Arte & Cultura",
+    "bajada": "Imaginando mundos, creando realidades.",
+    "descripcion": "En la etapa escolar básica, el arte es el lenguaje natural de los niños. Fomentamos la libre expresión y la motricidad fina a través de colores, texturas y sonidos, permitiendo que cada alumno descubra sus talentos desde pequeño.",
+    "Image": "/src/assets/images/arteycultura.png",
+    "color": "bg-orange-50",
+    "areas": [
+      {
+        "nombre": "Teatro y Expresión",
+        "desc": "Juegos de rol, disfraces y pérdida de la timidez.",
+        "img": "/src/assets/images/teatro.jpg"
+      },
+      {
+        "nombre": "Artes Plásticas",
+        "desc": "Dibujo, pintura y manualidades creativas.",
+        "img": "https://images.unsplash.com/photo-1491245338813-c6832976196e?q=80&w=2070&auto=format&fit=crop"
+      },
+      {
+        "nombre": "Iniciación Musical",
+        "desc": "Descubriendo el ritmo, el canto y los instrumentos.",
+        "img": "https://images.unsplash.com/photo-1572855675545-c54d1d916327?q=80&w=2070&auto=format&fit=crop"
+      }
+    ]
+  },
+  {
+    "id": "ciencias",
+    "titulo": "Ciencias & Descubrimiento",
+    "bajada": "Curiosidad natural por el mundo que nos rodea.",
+    "descripcion": "Transformamos el '¿por qué?' de los niños en aprendizaje. A través de la observación directa de la naturaleza y experimentos sencillos, sembramos el amor por el conocimiento y el cuidado de nuestro medio ambiente.",
+    "Image": "https://images.unsplash.com/photo-1530099486328-e021101a494a?q=80&w=2147&auto=format&fit=crop",
+    "color": "bg-blue-50",
+    "areas": [
+      {
+        "nombre": "Computación Educativa",
+        "desc": "Primeros pasos en la tecnología responsable.",
+        "img": "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop"
+      },
+      {
+        "nombre": "Huerto y Ecología",
+        "desc": "Aprendemos a cultivar y cuidar nuestro planeta.",
+        "img": "https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070&auto=format&fit=crop"
+      },
+      {
+        "nombre": "Pequeños Científicos",
+        "desc": "Experimentos divertidos de laboratorio.",
+        "img": "https://images.unsplash.com/photo-1567168544230-d5a94bd85975?q=80&w=2070&auto=format&fit=crop"
+      }
+    ]
+  },
+  {
+    "id": "deportes",
+    "titulo": "Deportes & Juego",
+    "bajada": "Creciendo sanos, fuertes y felices.",
+    "descripcion": "El movimiento es vital en el crecimiento. Más que competir, nos enfocamos en el desarrollo psicomotor, el compañerismo y la adquisición de hábitos de vida saludable a través del juego dirigido y actividades recreativas.",
+    "Image": "https://images.unsplash.com/photo-1610816169720-3b478229b35e?q=80&w=2070&auto=format&fit=crop",
+    "color": "bg-emerald-50",
+    "areas": [
+      {
+        "nombre": "Juegos Pre-deportivos",
+        "desc": "Fútbol y básquetbol adaptado para niños.",
+        "img": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=2069&auto=format&fit=crop"
+      },
+      {
+        "nombre": "Psicomotricidad",
+        "desc": "Coordinación, equilibrio y control corporal.",
+        "img": "https://images.unsplash.com/photo-1566838318109-a8bffb91d082?q=80&w=1974&auto=format&fit=crop"
+      },
+      {
+        "nombre": "Vida Saludable",
+        "desc": "Talleres de alimentación y recreo activo.",
+        "img": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2070&auto=format&fit=crop"
+      }
+    ]
+  }
+]
