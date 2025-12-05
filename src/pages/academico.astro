@@ -1,10 +1,18 @@
 ---
 
 import Layout from '../layouts/Layout.astro';
+import Imagen1  from '../assets/images/dibujando.avif';
 
 ---
 
 <Layout navStyle="solid">
+
+    <a href="/pilares/arte-cultura" class="group relative h-[500px] overflow-hidden cursor-pointer block">
+        <img
+                src={Imagen1.src}
+                class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+        />
+    </a>
 
     <section class="bg-white pt-32 pb-20 px-6 text-center border-b border-black/10">
         <p class="text-xs font-bold tracking-[0.2em] text-black/50 uppercase mb-4">

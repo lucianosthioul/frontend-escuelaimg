@@ -1,0 +1,204 @@
+---
+
+import Layout from '../layouts/Layout.astro';
+
+---
+
+<Layout navStyle="solid">
+
+
+    <!-- FORMULARIO DE ADMISIÓN -->
+    <section class="bg-white border-t border-black/10 py-24 px-6 pt-35">
+        <div class="max-w-3xl mx-auto">
+
+            <h2 class="text-3xl md:text-4xl font-serif italic text-black text-center mb-10">
+                Formulario de Admisión
+            </h2>
+
+            <p class="text-black/60 text-center mb-12">
+                Completa el siguiente formulario para iniciar el proceso de postulación.
+            </p>
+
+            <form id="admisionForm" class="space-y-6 bg-white border border-black/10 p-10 rounded-2xl shadow-sm">
+
+                <!-- Nombre del Apoderado -->
+                <div>
+                    <label class="block text-black font-medium mb-1">Nombre del Apoderado</label>
+                    <input
+                            type="text"
+                            name="apoderado"
+                            required
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                    />
+                </div>
+
+                <!-- Nombre del Estudiante -->
+                <div>
+                    <label class="block text-black font-medium mb-1">Nombre del Estudiante</label>
+                    <input
+                            type="text"
+                            name="estudiante"
+                            required
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                    />
+                </div>
+
+                <!-- Nivel al que Postula -->
+                <div>
+                    <label class="block text-black font-medium mb-1">Nivel al que Postula</label>
+                    <select
+                            name="nivel"
+                            required
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 bg-white focus:ring-1 focus:ring-black outline-none"
+                    >
+                        <option value="">Seleccionar…</option>
+                        <option>Pre-Kínder</option>
+                        <option>Kínder</option>
+                        <option>1° Básico</option>
+                        <option>2° Básico</option>
+                        <option>3° Básico</option>
+                        <option>4° Básico</option>
+                        <option>5° Básico</option>
+                        <option>6° Básico</option>
+                        <option>7° Básico</option>
+                        <option>8° Básico</option>
+                    </select>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label class="block text-black font-medium mb-1">Correo Electrónico</label>
+                    <input
+                            type="email"
+                            name="email"
+                            required
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                    />
+                </div>
+
+                <!-- Mensaje -->
+                <div>
+                    <label class="block text-black font-medium mb-1">Mensaje o Información Adicional</label>
+                    <textarea
+                            name="mensaje"
+                            rows="4"
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                    ></textarea>
+                </div>
+
+                <!-- Botón -->
+                <button
+                        type="submit"
+                        class="w-full py-4 border border-black rounded-xl text-black hover:bg-black hover:text-white transition"
+                >
+                    Enviar Postulación
+                </button>
+
+                <!-- Mensaje de éxito -->
+                <p id="successMsg" class="text-green-600 text-center font-medium hidden">
+                    ¡Tu postulación ha sido enviada con éxito!
+                </p>
+            </form>
+
+        </div>
+    </section>
+
+
+    <!-- CONTACTO -->
+<section class="bg-white border-t border-black/10 py-24 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+
+        <h2 class="text-3xl md:text-4xl font-serif italic text-black mb-10">
+            Contáctanos
+        </h2>
+
+        <p class="text-black/60 mb-12">
+            Si tienes preguntas sobre admisiones, nuestro proyecto educativo o cualquier otro asunto,
+            estaremos felices de ayudarte.
+        </p>
+
+        <form id="contactForm" class="space-y-6 bg-white border border-black/10 p-10 rounded-2xl shadow-sm text-left">
+
+            <!-- Nombre -->
+            <div>
+                <label class="block text-black font-medium mb-1">Nombre</label>
+                <input
+                        type="text"
+                        name="nombre"
+                        required
+                        class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                />
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="block text-black font-medium mb-1">Correo Electrónico</label>
+                <input
+                        type="email"
+                        name="email"
+                        required
+                        class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                />
+            </div>
+
+            <!-- Mensaje -->
+            <div>
+                <label class="block text-black font-medium mb-1">Mensaje</label>
+                <textarea
+                        name="mensaje"
+                        rows="5"
+                        required
+                        class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                ></textarea>
+            </div>
+
+            <!-- Botón -->
+            <button
+                    type="submit"
+                    class="w-full py-4 border border-black rounded-xl text-black hover:bg-black hover:text-white transition"
+            >
+                Enviar Mensaje
+            </button>
+
+            <p id="contactMsg" class="text-green-600 text-center font-medium hidden">
+                ¡Mensaje enviado correctamente!
+            </p>
+
+        </form>
+
+    </div>
+</section>
+
+</Layout>
+
+<script>
+    // 1. Corregir 'form'
+    // Aseguramos que 'form' es un HTMLFormElement, que sí tiene el método .reset()
+    const form = document.getElementById("admisionForm") as HTMLFormElement;
+    const msg = document.getElementById("successMsg");
+
+    // NOTA: Debes verificar que los elementos existan (como hicimos antes)
+    if (form && msg) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            // Tu código...
+            msg.classList.remove("hidden");
+            form.reset(); // ¡Ahora funciona!
+        });
+    }
+
+    // 2. Corregir 'contactForm'
+    // Aseguramos que 'contactForm' es un HTMLFormElement
+    const contactForm = document.getElementById("contactForm") as HTMLFormElement;
+    const contactMsg = document.getElementById("contactMsg");
+
+    if (contactForm && contactMsg) {
+        contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            contactMsg.classList.remove("hidden");
+            contactForm.reset(); // ¡Ahora funciona!
+        });
+    }
+</script>
+
