@@ -1,0 +1,112 @@
+---
+// src/pages/nosotros.astro
+import Layout from '../layouts/Layout.astro';
+
+// 4 Miembros del Equipo Directivo
+const equipo = [
+    {
+        nombre: "Javier Leal",
+        cargo: "Director Ejecutivo",
+        bio: "Lidera la gestión institucional y la visión estratégica de la escuela, asegurando la excelencia operativa y financiera.",
+        imagen: "https://images.unsplash.com/photo-1560250097-fb5c7e189870?q=80&w=2070&auto=format&fit=crop" // Profesional Sonriente
+    },
+    {
+        nombre: "Lorena Guzmán",
+        cargo: "Jefa de Estudios",
+        bio: "Responsable de la supervisión curricular, la evaluación docente y la calidad pedagógica de todos los ciclos.",
+        imagen: "https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=1998&auto=format&fit=crop" // Profesional mujer
+    },
+    {
+        nombre: "Marcos Tagle",
+        cargo: "Coordinador de Ciclo Mayor",
+        bio: "Enlace entre profesores, alumnos y apoderados de 5° a 8° básico. Fomenta la autonomía y el liderazgo estudiantil.",
+        imagen: "https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?q=80&w=2070&auto=format&fit=crop" // Profesional hombre
+    },
+    {
+        nombre: "Anaïs Dubois",
+        cargo: "Psicóloga Escolar",
+        bio: "Lidera el equipo de Convivencia Escolar y el Programa de Integración (PIE), apoyando el desarrollo emocional y social.",
+        imagen: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop" // Profesional mujer
+    },
+];
+---
+
+<Layout title="Nuestra Historia y Equipo" navStyle="solid">
+
+    <header class="relative h-[65vh] min-h-[450px] flex items-center justify-center overflow-hidden pt-32">
+        <div class="absolute inset-0 bg-slate-900/40 z-10"></div>
+        <img
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
+                alt="Estudiantes en el campus"
+                class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div class="relative z-20 text-center text-white px-4 max-w-4xl -mt-16">
+            <p class="text-sm font-bold tracking-[0.3em] uppercase mb-4 opacity-90">Fundada en 1922</p>
+            <h1 class="text-5xl md:text-7xl font-serif italic mb-6">Un Legado Educativo</h1>
+            <p class="text-lg md:text-xl font-light opacity-90 max-w-2xl mx-auto">
+                Más de un siglo formando líderes con carácter y valores sólidos para la sociedad.
+            </p>
+        </div>
+    </header>
+
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 border-b border-stone-200 pb-16">
+
+            <div class="p-4">
+                <h2 class="text-4xl font-serif italic mb-4 text-slate-900">Nuestra Misión</h2>
+                <div class="w-12 h-1 bg-slate-900 mb-6"></div>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    Inspirar la curiosidad, la excelencia y la conciencia social en nuestros estudiantes, entregando herramientas académicas y emocionales que les permitan prosperar en un mundo en constante cambio.
+                </p>
+            </div>
+
+            <div class="p-4">
+                <h2 class="text-4xl font-serif italic mb-4 text-slate-900">Nuestra Visión</h2>
+                <div class="w-12 h-1 bg-slate-900 mb-6"></div>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    Ser reconocidos como una de las instituciones educativas básicas con mayor impacto en el desarrollo integral de sus alumnos, destacando por la calidad humana y la innovación pedagógica.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-stone-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-center text-4xl font-serif italic mb-16 text-slate-900">Conoce a Nuestro Equipo</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {equipo.map((miembro) => (
+                        <div class="group relative bg-white shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+
+                            <img
+                                    src={miembro.imagen}
+                                    alt={miembro.nombre}
+                                    class="w-full h-80 object-cover object-top transition duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0"
+                            />
+
+                            <div class="p-6 text-center">
+                                <h4 class="text-xl font-serif text-slate-900 mb-1">{miembro.nombre}</h4>
+                                <p class="text-sm text-stone-500 font-bold uppercase tracking-wider">{miembro.cargo}</p>
+                            </div>
+
+                            <div class="absolute inset-0 bg-slate-900/90 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition duration-500">
+                                <p class="text-white text-sm italic text-center leading-relaxed">
+                                    {miembro.bio}
+                                </p>
+                            </div>
+
+                        </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-900 text-white text-center px-6">
+        <h2 class="text-3xl md:text-5xl font-serif italic mb-8">La educación con propósito cambia vidas.</h2>
+        <a href="/admisiones" class="inline-block border border-white px-8 py-3 text-sm uppercase tracking-widest hover:bg-white hover:text-slate-900 transition">
+            Postula Hoy
+        </a>
+    </section>
+
+</Layout>
