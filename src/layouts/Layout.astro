@@ -5,11 +5,11 @@ import FooterComponent from '../components/FooterComponent.astro'
 
 interface Props {
     title: string;
-    // AGREGA ESTA LÍNEA (El ? significa que es opcional)
+
     navStyle?: 'transparent' | 'solid';
 }
 
-// Extraemos navStyle con un valor por defecto
+
 const { title, navStyle = 'transparent' } = Astro.props;
 ---
 <!doctype html>
