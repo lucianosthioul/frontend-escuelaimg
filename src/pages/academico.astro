@@ -6,22 +6,29 @@ import Imagen1  from '../assets/images/dibujando.avif'; // Asumo que esta ruta e
 
 <Layout navStyle="solid" title="Niveles Educativos">
 
-    <a href="/pilares/arte-cultura" class="group relative h-[500px] overflow-hidden cursor-pointer block pt-20">
-        <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition duration-500 z-10"></div>
+    <section class="relative h-[60vh] min-h-[500px] w-full flex items-center justify-center overflow-hidden text-center">
+
+        <div class="absolute inset-0 bg-slate-900/40 z-10"></div>
+
         <img
                 src={Imagen1.src}
-                class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                alt="Educación Parvularia y Básica"
+                class="absolute inset-0 w-full h-full object-cover object-center"
         />
-    </a>
 
-    <section class="bg-white pt-16 pb-20 px-6 text-center border-b border-stone-200">
-        <p class="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase mb-4">
-            Nuestro Proyecto Educativo
-        </p>
+        <div class="relative z-20 px-6 max-w-4xl mx-auto flex flex-col items-center mt-24">
 
-        <h1 class="text-5xl md:text-6xl font-serif text-slate-900 italic">
-            Educación Parvularia & <span class="not-italic">Enseñanza Básica</span>
-        </h1>
+            <p class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/90">
+                Nuestro Proyecto Educativo
+            </p>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif italic leading-tight text-white drop-shadow-md">
+                Educación Parvularia & <br class="hidden md:block"/>
+                <span class="not-italic">Enseñanza Básica</span>
+            </h1>
+
+        </div>
+
     </section>
 
     <section class="SectionContenido bg-stone-50">

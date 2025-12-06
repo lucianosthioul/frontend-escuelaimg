@@ -35,7 +35,7 @@
     .BannerIntro {
         /* Para textos de introducción en el banner principal */
         /* Extraído de: index.astro */
-        @apply text-sm md:text-base uppercase tracking-[0.3em] mb-4 animate-fade-in-up;
+        @apply text-sm md:text-base uppercase tracking-[0.3em] mb-4;
     }
 
     .PaginaBanner {
@@ -53,7 +53,7 @@
     .BannerContenido {
         /* Contenedor del texto dentro del banner */
         /* Extraído de: [id].astro */
-        @apply relative z-20 text-center text-white px-4 animate-fade-in-up;
+        @apply relative z-20 text-center text-white px-4;
     }
 
     .BannerMeta {
@@ -93,7 +93,7 @@
     .TarjetaPilar {
         /* Tarjeta principal para la sección de Pilares (e.g., Home) */
         /* Extraído de: index.astro */
-        @apply group relative h-[500px] overflow-hidden cursor-pointer block;
+        @apply relative h-[500px] overflow-hidden cursor-pointer block;
     }
 
     .TarjetaPilarImagen {
@@ -115,7 +115,7 @@
     }
 
     .NuevasTarjetasImagen {
-        @apply group relative block h-60 overflow-hidden mb-4;
+        @apply relative block h-60 overflow-hidden mb-4;
     }
 
     .CategoriaTag {
@@ -244,7 +244,7 @@
 
     /* Menú Móvil (Desplegable) */
     .NavMenuMovilWrapper {
-        @apply hidden absolute top-full left-0 w-full bg-white/90 backdrop-blur-md flex-col items-center gap-4 py-6 shadow-xl border-t border-gray-100 animate-fade-in;
+        @apply hidden absolute top-full left-0 w-full bg-white/90 backdrop-blur-md flex-col items-center gap-4 py-6 shadow-xl border-t border-gray-100;
     }
 
     .NavLinkMovil {
