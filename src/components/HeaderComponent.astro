@@ -34,6 +34,38 @@ const initialClasses = navStyle === 'solid' ? solidClasses : transparentClasses;
         <a href="/noticias" class="hover:opacity-70 transition">NOTICIAS</a>
     </div>
 
+    <button id="menu-btn" class="md:hidden p-2 -mr-2 cursor-pointer transition hover:opacity-70 z-50 relative text-inherit" aria-label="Abrir menú">
+
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 icon-hamburger">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 icon-close hidden text-slate-900">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+
+    <div
+            id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-white/90 backdrop-blur-md flex-col items-center gap-4 py-6 shadow-xl border-t border-gray-100 animate-fade-in"
+    >
+        <a href="/" class="text-sm font-bold uppercase tracking-widest text-slate-900 hover:text-slate-500 transition">
+            Inicio
+        </a>
+        <a href="/nosotros" class="text-sm font-bold uppercase tracking-widest text-slate-900 hover:text-slate-500 transition">
+            Nosotros
+        </a>
+        <a href="/academico" class="text-sm font-bold uppercase tracking-widest text-slate-900 hover:text-slate-500 transition">
+            Académico
+        </a>
+        <a href="/admisiones" class="text-sm font-bold uppercase tracking-widest text-slate-900 hover:text-slate-500 transition">
+            Admisiones
+        </a>
+        <a href="/noticias" class="text-sm font-bold uppercase tracking-widest text-slate-900 hover:text-slate-500 transition">
+            Noticias
+        </a>
+    </div>
+
 </nav>
 
 <script src="../assets/js/scroll.js"></script>
