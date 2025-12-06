@@ -1,9 +1,9 @@
 ---
-// src/pages/pilares/[id].astro
+
 import Layout from '../../layouts/Layout.astro';
 import pilaresData from '../../assets/data/pilares.json';
 
-// 1. Generar las rutas estáticas basadas en el JSON
+// Generar las rutas estáticas basadas en el JSON
 export async function getStaticPaths() {
     return pilaresData.map((pilar) => ({
         params: { id: pilar.id },
@@ -11,7 +11,7 @@ export async function getStaticPaths() {
     }));
 }
 
-// 2. Obtener los datos para la página actual
+// Obtener los datos para la página actual
 const { pilar } = Astro.props;
 ---
 

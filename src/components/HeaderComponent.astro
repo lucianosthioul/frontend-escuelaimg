@@ -1,5 +1,5 @@
 ---
-// src/components/HeaderComponent.astro
+
 import logo from '../assets/images/logo.png'
 
 interface Props {
@@ -8,7 +8,6 @@ interface Props {
 
 const { navStyle = 'transparent' } = Astro.props;
 
-// LÓGICA CSS (Server Side):
 // Definimos las clases exactas para que coincidan con las que usa el JS después
 const solidClasses = "bg-white/90 backdrop-blur-md text-slate-900 shadow-sm py-4 border-gray-100";
 const transparentClasses = "bg-transparent text-white py-6 border-transparent";

@@ -1,4 +1,4 @@
-// src/assets/js/academico.js
+
 
     function toggleCard(e) {
     const card = e.currentTarget;

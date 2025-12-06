@@ -2,7 +2,7 @@
 // src/pages/noticias/[id].astro
 import Layout from '../../layouts/Layout.astro';
 
-// 1. GENERAR RUTAS ESTÁTICAS
+// GENERAR RUTAS ESTÁTICAS
 export async function getStaticPaths() {
     const noticias = [
         {
@@ -89,7 +89,7 @@ export async function getStaticPaths() {
     }));
 }
 
-// 2. OBTENER LOS DATOS
+// OBTENER LOS DATOS
 const { noticia } = Astro.props;
 ---
 
@@ -116,14 +116,12 @@ const { noticia } = Astro.props;
 
     <article class="max-w-2xl mx-auto px-6 py-20">
 
-        {/* Aquí renderizamos el RESUMEN dinámicamente */}
+        {}
         <p class="text-xl md:text-2xl font-serif text-slate-800 leading-relaxed mb-10 border-l-4 border-slate-900 pl-6 italic">
             "{noticia.resumen}"
         </p>
 
-        {/* Aquí usamos set:html para inyectar el HTML que escribimos en el array.
-            La clase 'prose' de Tailwind se encarga de dar estilo a los <p>, <h3>, etc.
-        */}
+        {}
         <div
                 class="prose prose-lg prose-slate prose-headings:font-serif prose-a:text-blue-900 font-light text-slate-600"
                 set:html={noticia.contenido}

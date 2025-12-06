@@ -1,4 +1,4 @@
-// Aseguramos que 'form' es un HTMLFormElement, que sí tiene el método .reset()
+// Aseguramos que 'form' es un HTMLFormElement
 const form = document.getElementById("admisionForm");
 const msg = document.getElementById("successMsg");
 
@@ -6,9 +6,8 @@ if (form && msg) {
     form.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        // Tu código...
         msg.classList.remove("hidden");
-        form.reset(); // ¡Ahora funciona!
+        form.reset();
     });
 }
 
