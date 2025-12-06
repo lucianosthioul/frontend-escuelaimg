@@ -1,62 +1,58 @@
 ---
-
 import Layout from '../layouts/Layout.astro';
-import Imagen1  from '../assets/images/dibujando.avif';
+import Imagen1  from '../assets/images/dibujando.avif'; // Asumo que esta ruta es correcta
 
 ---
 
-<Layout navStyle="solid">
+<Layout navStyle="solid" title="Niveles Educativos">
 
-    <a href="/pilares/arte-cultura" class="group relative h-[500px] overflow-hidden cursor-pointer block">
+    <a href="/pilares/arte-cultura" class="group relative h-[500px] overflow-hidden cursor-pointer block pt-20">
+        <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition duration-500 z-10"></div>
         <img
                 src={Imagen1.src}
-                class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+                class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
         />
     </a>
 
-    <section class="bg-white pt-32 pb-20 px-6 text-center border-b border-black/10">
-        <p class="text-xs font-bold tracking-[0.2em] text-black/50 uppercase mb-4">
+    <section class="bg-white pt-16 pb-20 px-6 text-center border-b border-stone-200">
+        <p class="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase mb-4">
             Nuestro Proyecto Educativo
         </p>
 
-        <h1 class="text-5xl md:text-6xl font-serif text-black italic">
+        <h1 class="text-5xl md:text-6xl font-serif text-slate-900 italic">
             Educación Parvularia & <span class="not-italic">Enseñanza Básica</span>
         </h1>
     </section>
 
-    <!-- PARVULARIA -->
-    <section class="max-w-7xl mx-auto px-6 py-24">
-        <h2 class="text-3xl md:text-4xl font-serif text-black italic text-center mb-14">
+    <section class="max-w-7xl mx-auto px-6 py-24 bg-stone-50">
+        <h2 class="text-3xl md:text-4xl font-serif text-slate-900 italic text-center mb-14">
             Educación Parvularia
         </h2>
 
         <div class="grid md:grid-cols-3 gap-10">
 
-            <!-- Juego -->
-            <div class="bg-white border border-black/10 rounded-2xl shadow-sm p-10 text-center hover:shadow-md transition">
-                <div class="w-20 h-20 bg-black/5 rounded-full mx-auto mb-6"></div>
-                <h3 class="text-xl font-semibold text-black mb-2">Juego</h3>
-                <p class="text-black/60 leading-relaxed">
+            <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-10 text-center transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div class="w-20 h-20 bg-slate-100 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl text-slate-700">🧩</div>
+                <h3 class="text-xl font-serif text-slate-900 mb-2 italic">Juego</h3>
+                <p class="text-slate-600 font-light leading-relaxed">
                     El juego es el motor del aprendizaje temprano, permitiendo explorar, crear
                     y expresar emociones en un entorno seguro.
                 </p>
             </div>
 
-            <!-- Descubrimiento -->
-            <div class="bg-white border border-black/10 rounded-2xl shadow-sm p-10 text-center hover:shadow-md transition">
-                <div class="w-20 h-20 bg-black/5 rounded-full mx-auto mb-6"></div>
-                <h3 class="text-xl font-semibold text-black mb-2">Descubrimiento</h3>
-                <p class="text-black/60 leading-relaxed">
+            <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-10 text-center transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div class="w-20 h-20 bg-slate-100 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl text-slate-700">🔬</div>
+                <h3 class="text-xl font-serif text-slate-900 mb-2 italic">Descubrimiento</h3>
+                <p class="text-slate-600 font-light leading-relaxed">
                     Fomentamos la curiosidad mediante experiencias sensoriales y cognitivas que
                     impulsan el pensamiento creativo y la resolución de problemas.
                 </p>
             </div>
 
-            <!-- Socialización -->
-            <div class="bg-white border border-black/10 rounded-2xl shadow-sm p-10 text-center hover:shadow-md transition">
-                <div class="w-20 h-20 bg-black/5 rounded-full mx-auto mb-6"></div>
-                <h3 class="text-xl font-semibold text-black mb-2">Socialización</h3>
-                <p class="text-black/60 leading-relaxed">
+            <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-10 text-center transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div class="w-20 h-20 bg-slate-100 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl text-slate-700">🤝</div>
+                <h3 class="text-xl font-serif text-slate-900 mb-2 italic">Socialización</h3>
+                <p class="text-slate-600 font-light leading-relaxed">
                     Desarrollamos habilidades socioemocionales fortaleciendo la convivencia,
                     el respeto, la empatía y el trabajo colaborativo.
                 </p>
@@ -65,65 +61,58 @@ import Imagen1  from '../assets/images/dibujando.avif';
         </div>
     </section>
 
-    <!-- ENSEÑANZA BÁSICA -->
-    <section class="bg-white border-t border-black/10 py-24 px-6">
+    <section class="bg-white border-t border-stone-200 py-24 px-6">
         <div class="max-w-7xl mx-auto">
 
-            <h2 class="text-3xl md:text-4xl font-serif text-black italic text-center mb-14">
+            <h2 class="text-3xl md:text-4xl font-serif text-slate-900 italic text-center mb-14">
                 Enseñanza Básica (1° a 8° Básico)
             </h2>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <!-- 1°–2° Básico -->
-                <div class="bg-white border border-black/10 rounded-2xl shadow-sm p-10 hover:shadow-md transition">
-                    <h3 class="text-xl font-semibold text-black mb-3">1° y 2° Básico</h3>
-                    <p class="text-black/60 leading-relaxed">
+                <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-8 transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <h3 class="text-xl font-serif text-slate-900 mb-3 italic">1° y 2° Básico</h3>
+                    <p class="text-slate-600 font-light leading-relaxed">
                         Se consolidan la lectura, escritura y el pensamiento matemático
                         mediante metodologías activas y lúdicas.
                     </p>
                 </div>
 
-                <!-- 3°–4° Básico -->
-                <div class="bg-white border border-black/10 rounded-2xl shadow-sm p-10 hover:shadow-md transition">
-                    <h3 class="text-xl font-semibold text-black mb-3">3° y 4° Básico</h3>
-                    <p class="text-black/60 leading-relaxed">
+                <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-8 transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <h3 class="text-xl font-serif text-slate-900 mb-3 italic">3° y 4° Básico</h3>
+                    <p class="text-slate-600 font-light leading-relaxed">
                         Se amplían habilidades lectoras, comprensión del entorno social y
                         pensamiento lógico, junto con expresión artística.
                     </p>
                 </div>
 
-                <!-- 5°–6° Básico -->
-                <div class="bg-white border border-black/10 rounded-2xl shadow-sm p-10 hover:shadow-md transition">
-                    <h3 class="text-xl font-semibold text-black mb-3">5° y 6° Básico</h3>
-                    <p class="text-black/60 leading-relaxed">
+                <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-8 transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <h3 class="text-xl font-serif text-slate-900 mb-3 italic">5° y 6° Básico</h3>
+                    <p class="text-slate-600 font-light leading-relaxed">
                         Profundizamos en ciencias, matemáticas, investigación, redacción
                         y habilidades tecnológicas.
                     </p>
                 </div>
 
-                <!-- 7°–8° Básico -->
-                <div class="bg-white border border-black/10 rounded-2xl shadow-sm p-10 hover:shadow-md transition">
-                    <h3 class="text-xl font-semibold text-black mb-3">7° y 8° Básico</h3>
-                    <p class="text-black/60 leading-relaxed">
+                <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-8 transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <h3 class="text-xl font-serif text-slate-900 mb-3 italic">7° y 8° Básico</h3>
+                    <p class="text-slate-600 font-light leading-relaxed">
                         Preparamos la transición a Educación Media fortaleciendo el
                         pensamiento crítico, la argumentación y el trabajo en equipo.
                     </p>
                 </div>
 
-                <!-- Talleres Formativos -->
-                <div class="bg-white border border-black/10 rounded-2xl shadow-sm p-10 hover:shadow-md transition">
-                    <h3 class="text-xl font-semibold text-black mb-3">Talleres Formativos</h3>
-                    <p class="text-black/60 leading-relaxed">
+                <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-8 transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <h3 class="text-xl font-serif text-slate-900 mb-3 italic">Talleres Formativos</h3>
+                    <p class="text-slate-600 font-light leading-relaxed">
                         Música, artes visuales, deportes, ciencias, robótica y más
                         para potenciar los talentos personales.
                     </p>
                 </div>
 
-                <!-- Convivencia Escolar -->
-                <div class="bg-white border border-black/10 rounded-2xl shadow-sm p-10 hover:shadow-md transition">
-                    <h3 class="text-xl font-semibold text-black mb-3">Convivencia Escolar</h3>
-                    <p class="text-black/60 leading-relaxed">
+                <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-8 transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <h3 class="text-xl font-serif text-slate-900 mb-3 italic">Convivencia Escolar</h3>
+                    <p class="text-slate-600 font-light leading-relaxed">
                         Desarrollamos liderazgo, mediación, respeto e inclusión mediante
                         proyectos de formación ciudadana.
                     </p>
