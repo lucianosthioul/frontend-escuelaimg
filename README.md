@@ -13,7 +13,6 @@ Dentro del proyecto verás los siguientes archivos y carpetas:
 │   ├── assets
 │   │   └── images
 │   │   └── js
-│   │   
 │   ├── components
 │   │   └── FooterComponent.astro
 │   │   └── HeaderComponent.astro
