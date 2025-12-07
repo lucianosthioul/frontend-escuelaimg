@@ -10,15 +10,15 @@ import home5 from '../assets/images/deporte2.png'
 
 <Layout title="Inicio - Escuela Inés Muñoz de García">
 
-    <section class="relative h-screen w-full sticky top-0 -z-10 flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-black/30 z-10"></div>
+    <section class="NuevasTarjetasImagen h-screen w-full sticky top-0 -z-10 flex items-center justify-center">
+        <div class="BannerOscuro bg-black/30 z-10"></div>
         <img
                 src={home1.src}
                 alt="Escuela"
-                class="absolute inset-0 w-full h-full object-cover"
+                class="BannerOscuro w-full h-full object-cover"
         />
 
-        <div class="pt-15 relative z-20 text-center text-white px-4 max-w-4xl mx-auto">
+        <div class="pt-15 BannerContenido text-center text-white px-4 max-w-4xl mx-auto">
             <p class="text-sm md:text-base uppercase tracking-[0.3em] mb-4 animate-fade-in-up">Bienvenidos a la excelencia</p>
             <h1 class="text-5xl md:text-7xl lg:text-8xl italic font-serif leading-tight mb-8">
                 Cultivando el <br/><span class="not-italic">Carácter</span>
@@ -29,7 +29,7 @@ import home5 from '../assets/images/deporte2.png'
         </div>
     </section>
 
-    <section class="relative z-20 bg-[#f4f1ea] py-24 md:py-32 px-6">
+    <section class="BannerContenido bg-[#f4f1ea] py-24 md:py-32 px-6">
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
 
             <div class="order-2 md:order-1">
@@ -62,27 +62,27 @@ import home5 from '../assets/images/deporte2.png'
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
 
-                <a href="/pilares/arte-cultura" class="group relative h-[300px] md:h-[500px] overflow-hidden cursor-pointer block">
-                    <img src={home3.src} class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" />
-                    <div class="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/80 to-transparent">
+                <a href="/pilares/arte-cultura" class="group TarjetaPilar">
+                    <img src={home3.src} class="BannerOscuro TarjetaPilarImagen" />
+                    <div class="BannerOscuro TarjetaPilarTextoContenedor">
                         <h4 class="text-2xl font-serif italic">Arte & Cultura</h4>
-                        <p class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 text-sm text-gray-300 transition-all duration-500">Creatividad sin límites.</p>
+                        <p class="TarjetaPilarDescripcion">Creatividad sin límites.</p>
                     </div>
                 </a>
 
-                <a href="/pilares/ciencias" class="group relative h-[300px] md:h-[500px] overflow-hidden cursor-pointer block md:-mt-12 z-10">
-                    <img src={home4.src} class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" />
-                    <div class="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/80 to-transparent">
+                <a href="/pilares/ciencias" class="group TarjetaPilar md:-mt-12 z-10">
+                    <img src={home4.src} class="BannerOscuro TarjetaPilarImagen" />
+                    <div class="BannerOscuro TarjetaPilarTextoContenedor">
                         <h4 class="text-2xl font-serif italic">Ciencias</h4>
-                        <p class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 text-sm text-gray-300 transition-all duration-500">Innovación constante.</p>
+                        <p class="TarjetaPilarDescripcion">Innovación constante.</p>
                     </div>
                 </a>
 
-                <a href="/pilares/deportes" class="group relative h-[300px] md:h-[500px] overflow-hidden cursor-pointer block">
-                    <img src={home5.src} class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" />
-                    <div class="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/80 to-transparent">
+                <a href="/pilares/deportes" class="group TarjetaPilar">
+                    <img src={home5.src} class="BannerOscuro TarjetaPilarImagen" />
+                    <div class="BannerOscuro TarjetaPilarTextoContenedor">
                         <h4 class="text-2xl font-serif italic">Deportes</h4>
-                        <p class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 text-sm text-gray-300 transition-all duration-500">Mente sana en cuerpo sano.</p>
+                        <p class="TarjetaPilarDescripcion">Mente sana en cuerpo sano.</p>
                     </div>
                 </a>
 

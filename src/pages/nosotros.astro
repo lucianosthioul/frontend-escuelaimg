@@ -33,15 +33,15 @@ const equipo = [
 
 <Layout title="Nuestra Historia y Equipo" navStyle="solid">
 
-    <header class="relative h-[50vh] md:h-[65vh] min-h-[400px] md:min-h-[450px] flex items-center justify-center overflow-hidden pt-20 md:pt-32">
-        <div class="absolute inset-0 bg-slate-900/40 z-10"></div>
+    <header class="NuevasTarjetasImagen h-[50vh] md:h-[65vh] min-h-[400px] md:min-h-[450px] flex items-center justify-center pt-20 md:pt-32">
+        <div class="BannerOscuro bg-slate-900/40 z-10"></div>
         <img
                 src={nosotrosbanner.src}
                 alt="Estudiantes en el campus"
-                class="absolute inset-0 w-full h-full object-cover"
+                class="BannerOscuro w-full h-full object-cover"
         />
-        <div class="relative z-20 text-center text-white px-4 max-w-4xl mt-0 md:-mt-24">
-            <p class="text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-4 opacity-90">Fundada en 1922</p>
+        <div class="BannerContenido text-center text-white px-4 max-w-4xl mt-0 md:-mt-24">
+            <p class="SubtituloSmall opacity-90">Fundada en 1922</p>
             <h1 class="text-4xl md:text-5xl lg:text-7xl font-serif italic mb-6">Un Legado Educativo</h1>
             <p class="text-base md:text-xl font-light opacity-90 max-w-2xl mx-auto">
                 Más de un siglo formando líderes con carácter y valores sólidos para la sociedad.
@@ -52,14 +52,14 @@ const equipo = [
     <section class="py-12 md:py-24 px-6 bg-white">
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 border-b border-stone-200 pb-16">
             <div class="p-4 text-center md:text-left">
-                <h2 class="text-3xl md:text-4xl font-serif italic mb-4 text-slate-900">Nuestra Misión</h2>
+                <h2 class="SectionTitulo mb-4 text-slate-900">Nuestra Misión</h2>
                 <div class="w-12 h-1 bg-slate-900 mb-6 mx-auto md:mx-0"></div>
                 <p class="text-base md:text-lg text-slate-600 leading-relaxed">
                     Inspirar la curiosidad, la excelencia y la conciencia social en nuestros estudiantes, entregando herramientas académicas y emocionales que les permitan prosperar en un mundo en constante cambio.
                 </p>
             </div>
             <div class="p-4 text-center md:text-left">
-                <h2 class="text-3xl md:text-4xl font-serif italic mb-4 text-slate-900">Nuestra Visión</h2>
+                <h2 class="SectionTitulo mb-4 text-slate-900">Nuestra Visión</h2>
                 <div class="w-12 h-1 bg-slate-900 mb-6 mx-auto md:mx-0"></div>
                 <p class="text-base md:text-lg text-slate-600 leading-relaxed">
                     Ser reconocidos como una de las instituciones educativas básicas con mayor impacto en el desarrollo integral de sus alumnos, destacando por la calidad humana y la innovación pedagógica.
@@ -70,7 +70,7 @@ const equipo = [
 
     <section class="py-12 md:py-24 px-4 md:px-6 bg-stone-50">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-center text-3xl md:text-4xl font-serif italic mb-10 md:mb-16 text-slate-900">Conoce a Nuestro Equipo</h2>
+            <h2 class="text-center SectionTitulo mb-10 md:mb-16 text-slate-900">Conoce a Nuestro Equipo</h2>
 
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                 {equipo.map((miembro) => (
@@ -87,7 +87,7 @@ const equipo = [
                                 <p class="text-[10px] md:text-sm text-stone-500 font-bold uppercase tracking-wider">{miembro.cargo}</p>
                             </div>
 
-                            <div class="absolute inset-0 bg-slate-900/90 flex items-center justify-center p-4 md:p-6 opacity-0 group-hover:opacity-100 transition duration-500">
+                            <div class="BannerOscuro bg-slate-900/90 flex items-center justify-center p-4 md:p-6 opacity-0 group-hover:opacity-100 transition duration-500">
                                 <p class="text-white text-xs md:text-sm italic text-center leading-relaxed">
                                     {miembro.bio}
                                 </p>

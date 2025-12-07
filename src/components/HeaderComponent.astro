@@ -9,8 +9,8 @@ interface Props {
 const { navStyle = 'transparent' } = Astro.props;
 
 // Definimos las clases exactas para que coincidan con las que usa el JS después
-const solidClasses = "bg-white/90 backdrop-blur-md text-slate-900 shadow-sm py-4 border-gray-100";
-const transparentClasses = "bg-transparent text-white py-6 border-transparent";
+const solidClasses = "NavEstadoSolido";
+const transparentClasses = "NavEstadoTransparente";
 
 // Si navStyle es 'solid', usamos las clases sólidas. Si no, las transparentes.
 const initialClasses = navStyle === 'solid' ? solidClasses : transparentClasses;
@@ -19,27 +19,27 @@ const initialClasses = navStyle === 'solid' ? solidClasses : transparentClasses;
 <nav
         id="navbar"
         data-style={navStyle}
-        class={`fixed w-full z-50 top-0 px-8 flex justify-center items-center transition-all duration-500 border-b ${initialClasses}`}
+        class={`NavContenedor ${initialClasses}`}
 >
 
-    <div class="text-2xl font-bold tracking-widest uppercase">
+    <div class="NavLogoWrapper">
         <a href="/"><img src={logo.src} alt="Logo de la Escuela" class="h-15"></a>
     </div>
 
-    <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide ml-12">
-        <a href="/nosotros" class="hover:opacity-70 transition">NOSOTROS</a>
-        <a href="/academico" class="hover:opacity-70 transition">ACADÉMICO</a>
-        <a href="/admisiones" class="hover:opacity-70 transition">ADMISIONES</a>
-        <a href="/noticias" class="hover:opacity-70 transition">NOTICIAS</a>
+    <div class="NavMenuEscritorio">
+        <a href="/nosotros" class="NavLinkEscritorio">NOSOTROS</a>
+        <a href="/academico" class="NavLinkEscritorio">ACADÉMICO</a>
+        <a href="/admisiones" class="NavLinkEscritorio">ADMISIONES</a>
+        <a href="/noticias" class="NavLinkEscritorio">NOTICIAS</a>
     </div>
 
-    <button id="menu-btn" class="md:hidden p-2 -mr-2 cursor-pointer transition hover:opacity-70 z-50 relative text-inherit" aria-label="Abrir menú">
+    <button id="menu-btn" class="NavBotonHamburguesa" aria-label="Abrir menú">
 
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 icon-hamburger">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="NavIcono icon-hamburger">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
 
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 icon-close hidden text-slate-900">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="NavIcono icon-close hidden text-slate-900">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
     </button>
@@ -48,19 +48,19 @@ const initialClasses = navStyle === 'solid' ? solidClasses : transparentClasses;
             id="mobile-menu"
             class="hidden absolute top-full left-0 w-full bg-white/90 backdrop-blur-md flex-col items-center gap-4 py-6 shadow-xl border-t border-gray-100 animate-fade-in"
     >
-        <a href="/" class="text-sm font-bold uppercase tracking-widest text-slate-900 hover:text-slate-500 transition">
+        <a href="/" class="NavLinkMovil">
             Inicio
         </a>
-        <a href="/nosotros" class="text-sm font-bold uppercase tracking-widest text-slate-900 hover:text-slate-500 transition">
+        <a href="/nosotros" class="NavLinkMovil">
             Nosotros
         </a>
-        <a href="/academico" class="text-sm font-bold uppercase tracking-widest text-slate-900 hover:text-slate-500 transition">
+        <a href="/academico" class="NavLinkMovil">
             Académico
         </a>
-        <a href="/admisiones" class="text-sm font-bold uppercase tracking-widest text-slate-900 hover:text-slate-500 transition">
+        <a href="/admisiones" class="NavLinkMovil">
             Admisiones
         </a>
-        <a href="/noticias" class="text-sm font-bold uppercase tracking-widest text-slate-900 hover:text-slate-500 transition">
+        <a href="/noticias" class="NavLinkMovil">
             Noticias
         </a>
     </div>

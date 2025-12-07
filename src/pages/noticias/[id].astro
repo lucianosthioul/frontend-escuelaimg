@@ -96,14 +96,14 @@ const { noticia } = Astro.props;
 <Layout title={noticia.titulo} navStyle="solid">
 
     <header class="relative w-full h-[60vh] min-h-[400px]">
-        <div class="absolute inset-0 bg-slate-900/40 z-10"></div>
+        <div class="BannerOscuro bg-slate-900/40 z-10"></div>
         <img
                 src={noticia.imagen}
                 alt={noticia.titulo}
-                class="absolute inset-0 w-full h-full object-cover"
+                class="BannerOscuro w-full h-full object-cover"
         />
 
-        <div class="relative z-20 h-full max-w-4xl mx-auto px-6 flex flex-col justify-center text-center text-white">
+        <div class="BannerContenido h-full max-w-4xl mx-auto px-6 flex flex-col justify-center text-center text-white">
             <div class="mb-6 flex justify-center items-center gap-3 text-sm font-bold tracking-widest uppercase">
                 <span class="bg-white text-black px-3 py-1">{noticia.categoria}</span>
                 <span>{noticia.fecha}</span>
@@ -117,13 +117,13 @@ const { noticia } = Astro.props;
     <article class="max-w-2xl mx-auto px-6 py-20">
 
         {}
-        <p class="text-xl md:text-2xl font-serif text-slate-800 leading-relaxed mb-10 border-l-4 border-slate-900 pl-6 italic">
+        <p class="ArticuloCita text-slate-800 mb-10 border-l-4 border-slate-900 pl-6 italic">
             "{noticia.resumen}"
         </p>
 
         {}
         <div
-                class="prose prose-lg prose-slate prose-headings:font-serif prose-a:text-blue-900 font-light text-slate-600"
+                class="ArticuloProse"
                 set:html={noticia.contenido}
         />
 

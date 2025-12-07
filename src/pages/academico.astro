@@ -6,19 +6,19 @@ import Imagen1  from '../assets/images/dibujando.avif';
 
 <Layout navStyle="solid" title="Niveles Educativos">
 
-    <section class="relative h-[60vh] min-h-[500px] w-full flex items-center justify-center overflow-hidden text-center">
+    <section class=" h-[60vh] min-h-[500px] w-full flex items-center justify-center NuevasTarjetasImagen text-center">
 
-        <div class="absolute inset-0 bg-slate-900/40 z-10"></div>
+        <div class="BannerOscuro bg-slate-900/40 z-10"></div>
 
         <img
                 src={Imagen1.src}
                 alt="Educación Parvularia y Básica"
-                class="absolute inset-0 w-full h-full object-cover object-center"
+                class="BannerOscuro w-full h-full object-cover object-center"
         />
 
-        <div class="relative z-20 px-6 max-w-4xl mx-auto flex flex-col items-center mt-24">
+        <div class="BannerContenido px-6 max-w-4xl mx-auto flex flex-col items-center mt-24">
 
-            <p class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/90">
+            <p class="SubtituloSmall text-white/90">
                 Nuestro Proyecto Educativo
             </p>
 
@@ -32,14 +32,14 @@ import Imagen1  from '../assets/images/dibujando.avif';
     </section>
 
     <section class="SectionContenido bg-stone-50">
-        <h2 class="text-3xl md:text-4xl font-serif text-slate-900 italic text-center mb-14">
+        <h2 class="SectionTitulo text-slate-900 mb-14 text-center">
             Educación Parvularia
         </h2>
 
         <div class="grid md:grid-cols-3 gap-10">
 
-            <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-10 text-center transition duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div class="w-20 h-20 bg-slate-100 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl text-slate-700">🧩</div>
+            <div class="TarjetaFeature">
+                <div class="ContenedorIconoTarjeta">🧩</div>
                 <h3 class="text-xl font-serif text-slate-900 mb-2 italic">Juego</h3>
                 <p class="text-slate-600 font-light leading-relaxed">
                     El juego es el motor del aprendizaje temprano, permitiendo explorar, crear
@@ -47,8 +47,8 @@ import Imagen1  from '../assets/images/dibujando.avif';
                 </p>
             </div>
 
-            <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-10 text-center transition duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div class="w-20 h-20 bg-slate-100 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl text-slate-700">🔬</div>
+            <div class="TarjetaFeature">
+                <div class="ContenedorIconoTarjeta">🔬</div>
                 <h3 class="text-xl font-serif text-slate-900 mb-2 italic">Descubrimiento</h3>
                 <p class="text-slate-600 font-light leading-relaxed">
                     Fomentamos la curiosidad mediante experiencias sensoriales y cognitivas que
@@ -56,8 +56,8 @@ import Imagen1  from '../assets/images/dibujando.avif';
                 </p>
             </div>
 
-            <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-10 text-center transition duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div class="w-20 h-20 bg-slate-100 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl text-slate-700">🤝</div>
+            <div class="TarjetaFeature">
+                <div class="ContenedorIconoTarjeta">🤝</div>
                 <h3 class="text-xl font-serif text-slate-900 mb-2 italic">Socialización</h3>
                 <p class="text-slate-600 font-light leading-relaxed">
                     Desarrollamos habilidades socioemocionales fortaleciendo la convivencia,
@@ -71,13 +71,13 @@ import Imagen1  from '../assets/images/dibujando.avif';
     <section class="bg-white border-t border-stone-200 py-24 px-6">
         <div class="max-w-7xl mx-auto">
 
-            <h2 class="text-3xl md:text-4xl font-serif text-slate-900 italic text-center mb-14">
+            <h2 class="SectionTitulo text-slate-900 italic mb-14">
                 Enseñanza Básica (1° a 8° Básico)
             </h2>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-8 transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div class="TarjetaFeature">
                     <h3 class="text-xl font-serif text-slate-900 mb-3 italic">1° y 2° Básico</h3>
                     <p class="text-slate-600 font-light leading-relaxed">
                         Se consolidan la lectura, escritura y el pensamiento matemático
@@ -85,7 +85,7 @@ import Imagen1  from '../assets/images/dibujando.avif';
                     </p>
                 </div>
 
-                <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-8 transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div class="TarjetaFeature">
                     <h3 class="text-xl font-serif text-slate-900 mb-3 italic">3° y 4° Básico</h3>
                     <p class="text-slate-600 font-light leading-relaxed">
                         Se amplían habilidades lectoras, comprensión del entorno social y
@@ -93,7 +93,7 @@ import Imagen1  from '../assets/images/dibujando.avif';
                     </p>
                 </div>
 
-                <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-8 transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div class="TarjetaFeature">
                     <h3 class="text-xl font-serif text-slate-900 mb-3 italic">5° y 6° Básico</h3>
                     <p class="text-slate-600 font-light leading-relaxed">
                         Profundizamos en ciencias, matemáticas, investigación, redacción
@@ -101,7 +101,7 @@ import Imagen1  from '../assets/images/dibujando.avif';
                     </p>
                 </div>
 
-                <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-8 transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div class="TarjetaFeature">
                     <h3 class="text-xl font-serif text-slate-900 mb-3 italic">7° y 8° Básico</h3>
                     <p class="text-slate-600 font-light leading-relaxed">
                         Preparamos la transición a Educación Media fortaleciendo el
@@ -109,7 +109,7 @@ import Imagen1  from '../assets/images/dibujando.avif';
                     </p>
                 </div>
 
-                <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-8 transition duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div class="TarjetaFeature">
                     <h3 class="text-xl font-serif text-slate-900 mb-3 italic">Talleres Formativos</h3>
                     <p class="text-slate-600 font-light leading-relaxed">
                         Música, artes visuales, deportes, ciencias, robótica y más

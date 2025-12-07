@@ -1,156 +1,116 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@theme {
-
-}
-
 @layer components {
-    /* ============================== */
-    /* 1. SECCIONES y CONTENEDORES */
-    /* ============================== */
+    /* Secciones y Contenedores */
 
     .SectionContenido {
         /* Contenedor principal para la mayoría de las secciones */
-        /* Extraído de: academico.astro, nosotros.astro, [id].astro */
         @apply max-w-7xl mx-auto px-6 py-24;
     }
 
-    /* ============================== */
-    /* 2. TIPOGRAFÍA */
-    /* ============================== */
+    /* Tipografía */
 
     .SectionTitulo {
         /* Para títulos de sección principales (h2) */
-        /* Extraído de: academico.astro, index.astro, nosotros.astro */
-        @apply text-3xl md:text-4xl lg:text-5xl font-serif italic text-center;
+        @apply text-3xl md:text-4xl font-serif italic;
     }
 
     .SubtituloSmall {
         /* Para textos de introducción en mayúsculas sobre los títulos */
-        /* Extraído de: academico.astro, [id].astro, index.astro */
-        @apply text-xs md:text-base font-bold tracking-[0.2em] uppercase mb-4 text-slate-500;
+        @apply text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4;
     }
 
     .BannerIntro {
         /* Para textos de introducción en el banner principal */
-        /* Extraído de: index.astro */
         @apply text-sm md:text-base uppercase tracking-[0.3em] mb-4;
     }
 
     .PaginaBanner {
-        /* Contenedor de encabezado de página (e.g., [id].astro, Home Hero) */
-        /* Extraído de: [id].astro */
+        /* Contenedor de encabezado de página*/
         @apply relative h-[70vh] min-h-[500px] w-full flex items-center justify-center overflow-hidden;
     }
 
-    .BannerOverlay {
+    .BannerOscuro {
         /* Capa oscura sobre la imagen del banner */
-        /* Extraído de: [id].astro */
-        @apply absolute inset-0 bg-slate-900/40 z-10;
+        @apply absolute inset-0;
     }
 
     .BannerContenido {
         /* Contenedor del texto dentro del banner */
-        /* Extraído de: [id].astro */
-        @apply relative z-20 text-center text-white px-4;
+        @apply relative z-20;
     }
 
     .BannerMeta {
-        /* Texto meta (fecha, autor) en el banner de noticia */
-        /* Extraído de: [id].astro */
-        @apply text-xs md:text-sm font-medium tracking-widest uppercase text-stone-300 mb-2;
+        /* Texto meta (fecha) en el banner de noticia */
+        @apply flex items-center gap-4 text-xs text-slate-400 font-medium tracking-widest uppercase;
     }
 
     .ArticuloCita {
         /* Estilo para el bloque de cita/resumen destacado dentro de un artículo */
-        /* Extraído de: [id].astro */
-        @apply text-xl md:text-2xl font-serif text-slate-800 leading-relaxed mb-10 border-l-4 border-slate-900 pl-6 italic;
+        @apply text-xl md:text-2xl font-serif leading-relaxed;
     }
 
     .ArticuloProse {
         /* Estilo del bloque de contenido HTML usando el plugin @tailwindcss/typography */
-        /* Extraído de: [id].astro */
         @apply prose prose-lg prose-slate prose-headings:font-serif prose-a:text-blue-900 font-light text-slate-600;
     }
 
-    /* ============================== */
-    /* 3. CARDS / TARJETAS DE CONTENIDO */
-    /* ============================== */
+    /* Tarjetas de Contenido */
 
     .TarjetaFeature {
         /* Tarjetas de características y pilares */
-        /* Extraído de: academico.astro */
         @apply bg-white border border-stone-200 rounded-sm shadow-sm p-10 text-center transition duration-300 hover:shadow-xl hover:-translate-y-1;
     }
 
     .ContenedorIconoTarjeta {
-        /* Contenedor circular de los iconos dentro de las CardFeature */
-        /* Extraído de: academico.astro */
+        /* Contenedor circular de los iconos dentro de las TarjetaFeature */
         @apply w-20 h-20 bg-slate-100 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl text-slate-700;
     }
 
     .TarjetaPilar {
-        /* Tarjeta principal para la sección de Pilares (e.g., Home) */
-        /* Extraído de: index.astro */
-        @apply relative h-[500px] overflow-hidden cursor-pointer block;
+        /* Tarjeta principal para la sección de Pilares */
+        @apply relative h-[300px] md:h-[500px] overflow-hidden cursor-pointer block;
     }
 
     .TarjetaPilarImagen {
-        /* Imagen dentro de la CardPillar (efecto hover) */
-        /* Extraído de: index.astro */
-        @apply absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100;
+        /* Imagen dentro de la TarjetaPilar (efecto hover) */
+        @apply w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100;
     }
 
     .TarjetaPilarTextoContenedor {
-        /* Contenedor de texto con gradiente en CardPillar */
-        /* Extraído de: index.astro */
-        @apply absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/80 to-transparent text-white;
+        /* Contenedor de texto con gradiente en TarjetaPilar */
+        @apply absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/80 to-transparent;
     }
 
     .TarjetaPilarDescripcion {
-        /* Párrafo de descripción en CardPillar (efecto hover) */
-        /* Extraído de: index.astro */
+        /* Párrafo de descripción en TarjetaPilar */
         @apply h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 text-sm text-gray-300 transition-all duration-500;
     }
 
     .NuevasTarjetasImagen {
-        @apply relative block h-60 overflow-hidden mb-4;
+        @apply relative overflow-hidden;
     }
 
-    .CategoriaTag {
-        @apply absolute top-4 left-4 bg-slate-800 text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 z-20;
-    }
-
-    .ArticuloMeta {
-        @apply flex items-center gap-4 text-xs text-slate-400 font-medium tracking-widest uppercase;
-    }
-
-    /* ============================== */
-    /* 4. FORMULARIOS y BOTONES */
-    /* ============================== */
+    /* Formulario y Botones */
 
     .FormInput {
         /* Estilo general para <input>, <select> y <textarea> */
-        /* Extraído de: admisiones.astro */
-        @apply w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none transition;
+        @apply w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none;
     }
 
     .BtnPrimario {
         /* Botón principal de la página de admisiones */
-        /* Extraído de: admisiones.astro */
-        @apply w-full py-4 border border-black rounded-xl text-black transition hover:bg-black hover:text-white font-medium tracking-wide uppercase;
+        @apply w-full py-4 border border-black rounded-xl text-black transition hover:bg-black hover:text-white;
     }
 
     .FormContenedor {
-        /* Contenedor principal para formularios (e.g., Admisiones) */
-        /* Extraído de: admisiones.astro */
+        /* Contenedor principal para formularios */
         @apply space-y-6 bg-white border border-black/10 p-10 rounded-2xl shadow-sm;
     }
 
     .FormLabel {
         /* Etiqueta de los campos de formulario */
-        /* Extraído de: admisiones.astro */
         @apply block text-black font-medium mb-1;
     }
 
@@ -160,48 +120,37 @@
 
     .LinkLeerMas {
         /* Enlace de 'Leer más' en tarjetas de noticia */
-        /* Extraído de: noticias.astro */
         @apply inline-block pt-2 text-xs font-bold uppercase tracking-widest border-b border-slate-300 pb-1 hover:border-slate-900 transition mt-2;
     }
 
 
-    /* ==================================== */
-    /* 7. FOOTER */
-    /* ==================================== */
+    /* Footer */
 
     .FooterContenedor {
         /* Contenedor principal del footer */
-        /* Extraído de: FooterComponent.astro */
         @apply bg-slate-950 text-stone-400 py-20 text-center;
     }
 
     .FooterTitulo {
         /* Título principal del footer */
-        /* Extraído de: FooterComponent.astro */
         @apply text-4xl font-serif text-white mb-8;
     }
 
     .FooterEslogan {
         /* Eslogan/Texto pequeño del footer */
-        /* Extraído de: FooterComponent.astro */
         @apply text-sm uppercase tracking-widest;
     }
 
-    /* ==================================== */
-    /* 8. LINKS DE ACCIÓN */
-    /* ==================================== */
+    /* Links */
 
     .LinkSectionVolver {
         /* Enlace para volver a la sección principal */
-        /* Extraído de: [id].astro */
-        @apply inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase hover:text-slate-600 transition;
+        @apply text-3xl font-serif italic hover:text-stone-300 transition inline-flex items-center gap-2;
     }
 
-    /* ==================================== */
-    /* 10. NAVEGACIÓN (HEADER) COMPONETIZADO */
-    /* ==================================== */
+    /* Nav */
 
-    /* Contenedor Principal (La barra en sí) */
+    /* Contenedor Principal */
     .NavContenedor {
         @apply fixed w-full z-50 top-0 px-8 flex justify-center items-center transition-all duration-500 border-b;
     }
@@ -217,11 +166,7 @@
 
     /* Logo */
     .NavLogoWrapper {
-        @apply text-2xl font-bold tracking-widest uppercase flex-1 md:flex-none;
-    }
-
-    .NavLogoImg {
-        @apply h-12 md:h-16; /* Ajusté h-15 a h-16 para estándar, o usa h-[60px] */
+        @apply text-2xl font-bold tracking-widest uppercase;
     }
 
     /* Menú Escritorio */
@@ -233,18 +178,13 @@
         @apply hover:opacity-70 transition;
     }
 
-    /* Botón Hamburguesa (Móvil) */
+    /* Botón Hamburguesa */
     .NavBotonHamburguesa {
         @apply md:hidden p-2 -mr-2 cursor-pointer transition hover:opacity-70 z-50 relative text-inherit;
     }
 
     .NavIcono {
         @apply w-8 h-8;
-    }
-
-    /* Menú Móvil (Desplegable) */
-    .NavMenuMovilWrapper {
-        @apply hidden absolute top-full left-0 w-full bg-white/90 backdrop-blur-md flex-col items-center gap-4 py-6 shadow-xl border-t border-gray-100;
     }
 
     .NavLinkMovil {

@@ -17,16 +17,16 @@ const { pilar } = Astro.props;
 
 <Layout title={`${pilar.titulo} - Colegio`} navStyle="solid">
 
-    <header class="relative h-[70vh] min-h-[500px] w-full flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-slate-900/40 z-10"></div>
+    <header class="PaginaBanner">
+        <div class="BannerOscuro bg-slate-900/40 z-10"></div>
         <img
                 src={pilar.Image}
                 alt={pilar.titulo}
-                class="absolute inset-0 w-full h-full object-cover attachment-fixed"
+                class="BannerOscuro w-full h-full object-cover attachment-fixed"
         />
 
-        <div class="relative z-20 text-center text-white px-4 animate-fade-in-up">
-      <span class="text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-4 block opacity-90">
+        <div class="BannerContenido text-center text-white px-4 animate-fade-in-up">
+      <span class="BannerIntro block opacity-90">
         Nuestros Pilares
       </span>
             <h1 class="text-5xl md:text-7xl font-serif italic mb-6">
@@ -50,8 +50,8 @@ const { pilar } = Astro.props;
         {pilar.areas.map((area, index) => (
                 <div class={`flex flex-col md:flex-row items-center gap-12 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
 
-                    <div class="w-full md:w-1/2 relative group overflow-hidden shadow-2xl rounded-sm aspect-[4/3]">
-                        <div class="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition z-10"></div>
+                    <div class="w-full md:w-1/2 NuevasTarjetasImagen group shadow-2xl rounded-sm aspect-[4/3]">
+                        <div class="BannerOscuro bg-slate-900/0 group-hover:bg-slate-900/10 transition z-10"></div>
                         <img
                                 src={area.img}
                                 alt={area.nombre}
@@ -77,7 +77,7 @@ const { pilar } = Astro.props;
 
     <div class="bg-slate-900 text-white py-16 text-center">
         <p class="text-stone-400 text-sm uppercase tracking-widest mb-4">Sigue explorando</p>
-        <a href="/" class="text-3xl font-serif italic hover:text-stone-300 transition inline-flex items-center gap-2">
+        <a href="/" class="LinkSectionVolver">
             Volver al Inicio
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
