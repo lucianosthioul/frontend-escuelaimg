@@ -1,4 +1,21 @@
+---
+// Importamos funciones para conectar con Strapi
+import { fetchFromAPI, STRAPI_BASE_URL } from '../lib/conection'
+
+// Obtenemos los datos del footer desde Strapi
+const data = await fetchFromAPI('footer')
+---
+
 <footer class="FooterContenedor">
-    <h2 class="FooterTitulo">Escuela Inés Muñoz de García</h2>
-    <p class="FooterEslogan">Inspirando grandeza desde 1922</p>
+
+    <!-- Título principal del footer -->
+    <h2 class="FooterTitulo">
+        {data.titulo}
+    </h2>
+
+    <!-- Eslogan o texto secundario -->
+    <p class="FooterEslogan">
+        {data.eslogan}
+    </p>
+
 </footer>

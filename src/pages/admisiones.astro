@@ -1,102 +1,114 @@
 ---
 
 import Layout from '../layouts/Layout.astro';
-
+// Fetch de datos de la página de admisiones desde Strapi
+import { fetchFromAPI, STRAPI_BASE_URL } from "../lib/conection";
+const data = await fetchFromAPI(
+  "admisione"
+);
+const menuItems = data?.form || [];
+const menuItems2 = data?.form2 || [];
 ---
 
-<Layout navStyle="solid" title="Admisiones">
+<Layout title="Admisiones" navStyle="solid">
 
 
     <!-- FORMULARIO DE ADMISIÓN -->
     <section class="bg-white border-t border-black/10 py-24 px-6 pt-35">
         <div class="max-w-3xl mx-auto">
 
-            <h2 class="SectionTitulo text-black mb-10 text-center">
-                Formulario de Admisión
+            <h2 class="text-3xl md:text-4xl font-serif italic text-black text-center mb-10">
+                {data.titulo1}
             </h2>
 
             <p class="text-black/60 text-center mb-12">
-                Completa el siguiente formulario para iniciar el proceso de postulación.
+                {data.subtitle1}
             </p>
 
-            <form id="admisionForm" class="FormContenedor">
+            <form id="admisionForm" class="space-y-6 bg-white border border-black/10 p-10 rounded-2xl shadow-sm">
 
-                <!-- Nombre del Apoderado -->
+                {/* Campo: Nombre del Apoderado */}
                 <div>
-                    <label class="FormLabel">Nombre del Apoderado</label>
+                    <label class="block text-black font-medium mb-1">
+                        {menuItems.apoderado}
+                    </label>
                     <input
                             type="text"
                             name="apoderado"
                             required
-                            class="FormInput"
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
                     />
                 </div>
 
-                <!-- Nombre del Estudiante -->
+                {/* Campo: Nombre del Estudiante */}
                 <div>
-                    <label class="FormLabel">Nombre del Estudiante</label>
+                    <label class="block text-black font-medium mb-1">
+                        {menuItems.estudiante}
+                    </label>
                     <input
                             type="text"
                             name="estudiante"
                             required
-                            class="FormInput"
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
                     />
                 </div>
 
-                <!-- Nivel al que Postula -->
+                {/* Campo: Nivel al que Postula (Select) */}
                 <div>
-                    <label class="FormLabel">Nivel al que Postula</label>
+                    <label class="block text-black font-medium mb-1">
+                        {menuItems.nivel}
+                    </label>
                     <select
                             name="nivel"
                             required
-                            class="FormInput"
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 bg-white focus:ring-1 focus:ring-black outline-none"
                     >
                         <option value="">Seleccionar…</option>
-                        <option>Pre-Kínder</option>
-                        <option>Kínder</option>
-                        <option>1° Básico</option>
-                        <option>2° Básico</option>
-                        <option>3° Básico</option>
-                        <option>4° Básico</option>
-                        <option>5° Básico</option>
-                        <option>6° Básico</option>
-                        <option>7° Básico</option>
-                        <option>8° Básico</option>
+                        {/* Mapeo del arreglo JSON de niveles_educativos */}
+                        {menuItems.niveles_educativos.map((nivel: any) => (
+                                <option value={nivel}>
+                                    {nivel}
+                                </option>
+                        ))}
                     </select>
                 </div>
 
-                <!-- Email -->
+                {/* Campo: Email */}
                 <div>
-                    <label class="FormLabel">Correo Electrónico</label>
+                    <label class="block text-black font-medium mb-1">
+                        {menuItems.email}
+                    </label>
                     <input
                             type="email"
                             name="email"
                             required
-                            class="FormInput"
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
                     />
                 </div>
 
-                <!-- Mensaje -->
+                {/* Campo: Mensaje */}
                 <div>
-                    <label class="FormLabel">Mensaje o Información Adicional</label>
+                    <label class="block text-black font-medium mb-1">
+                        {menuItems.mensaje}
+                    </label>
                     <textarea
                             name="mensaje"
                             rows="4"
-                            class="FormInput"
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
                     ></textarea>
                 </div>
 
-                <!-- Botón -->
+                {/* Botón de Enviar */}
                 <button
                         type="submit"
-                        class="BtnPrimario"
+                        class="w-full py-4 border border-black rounded-xl text-black hover:bg-black hover:text-white transition"
                 >
-                    Enviar Postulación
+                    {menuItems.submit}
                 </button>
 
-                <!-- Mensaje de éxito -->
+                {/* Mensaje de éxito */}
                 <p id="successMsg" class="text-green-600 text-center font-medium hidden">
-                    ¡Tu postulación ha sido enviada con éxito!
+                    {menuItems.success}
                 </p>
             </form>
 
@@ -108,60 +120,59 @@ import Layout from '../layouts/Layout.astro';
 <section class="bg-white border-t border-black/10 py-24 px-6">
     <div class="max-w-3xl mx-auto text-center">
 
-        <h2 class="SectionTitulo text-black mb-10">
-            Contáctanos
+        <h2 class="text-3xl md:text-4xl font-serif italic text-black mb-10">
+            {data.titulo2}
         </h2>
 
         <p class="text-black/60 mb-12">
-            Si tienes preguntas sobre admisiones, nuestro proyecto educativo o cualquier otro asunto,
-            estaremos felices de ayudarte.
+            {data.subtitle2}
         </p>
 
-        <form id="contactForm" class="FormContenedor text-left">
+        <form id="contactForm" class="space-y-6 bg-white border border-black/10 p-10 rounded-2xl shadow-sm text-left">
 
             <!-- Nombre -->
             <div>
-                <label class="FormLabel">Nombre</label>
+                <label class="block text-black font-medium mb-1">{menuItems2.nombre}</label>
                 <input
                         type="text"
                         name="nombre"
                         required
-                        class="FormInput"
+                        class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
                 />
             </div>
 
             <!-- Email -->
             <div>
-                <label class="FormLabel">Correo Electrónico</label>
+                <label class="block text-black font-medium mb-1">{menuItems2.email}</label>
                 <input
                         type="email"
                         name="email"
                         required
-                        class="FormInput"
+                        class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
                 />
             </div>
 
             <!-- Mensaje -->
             <div>
-                <label class="FormLabel">Mensaje</label>
+                <label class="block text-black font-medium mb-1">{menuItems2.mensaje}</label>
                 <textarea
                         name="mensaje"
                         rows="5"
                         required
-                        class="FormInput"
+                        class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
                 ></textarea>
             </div>
 
             <!-- Botón -->
             <button
                     type="submit"
-                    class="BtnPrimario"
+                    class="w-full py-4 border border-black rounded-xl text-black hover:bg-black hover:text-white transition"
             >
-                Enviar Mensaje
+                {menuItems2.submit}
             </button>
 
             <p id="contactMsg" class="text-green-600 text-center font-medium hidden">
-                ¡Mensaje enviado correctamente!
+                {menuItems2.success}
             </p>
 
         </form>

@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const iconHamburger = document.querySelector('.icon-hamburger');
     const iconClose = document.querySelector('.icon-close');
 
-    // Si no hay navbar (ej. página de error), no hacemos nada
+    // Si no hay navbar, no se hace nada
     if (!navbar) return;
 
     // Configuración de Estilos
-    // Leemos el estilo inicial (solid o transparent)
+    // Se lee el estilo inicial (solid o transparent)
     const currentStyle = navbar.getAttribute('data-style') || 'transparent';
 
     // Clases para el modo SÓLIDO

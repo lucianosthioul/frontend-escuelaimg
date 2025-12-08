@@ -1,19 +1,33 @@
 ---
+// Importamos funciones de conexión con Strapi
+import { fetchFromAPI, STRAPI_BASE_URL } from '../lib/conection'
 
-import logo from '../assets/images/logo.png'
+// Obtenemos la base URL del proyecto desde Astro
+const base = import.meta.env.BASE_URL
 
+// Traemos los datos del menú desde Strapi
+const data = await fetchFromAPI('nav')
+
+// Obtenemos los ítems del menú o un arreglo vacío si no hay datos
+const menuItems = data?.nav || []
+
+// Interfaz para las props del componente
 interface Props {
-    navStyle?: 'transparent' | 'solid';
+    // Estilo de navegación: transparente o sólida
+    navStyle?: 'transparent' | 'solid'
 }
 
-const { navStyle = 'transparent' } = Astro.props;
+// Obtenemos el estilo de navegación desde las props
+const { navStyle = 'transparent' } = Astro.props
 
-// Definimos las clases exactas para que coincidan con las que usa el JS después
-const solidClasses = "NavEstadoSolido";
-const transparentClasses = "NavEstadoTransparente";
+// Clases CSS para el estado sólido del navbar
+const solidClasses = "NavEstadoSolido"
 
-// Si navStyle es 'solid', usamos las clases sólidas. Si no, las transparentes.
-const initialClasses = navStyle === 'solid' ? solidClasses : transparentClasses;
+// Clases CSS para el estado transparente del navbar
+const transparentClasses = "NavEstadoTransparente"
+
+// Definimos las clases iniciales según el estilo recibido
+const initialClasses = navStyle === 'solid' ? solidClasses : transparentClasses
 ---
 
 <nav
@@ -22,49 +36,86 @@ const initialClasses = navStyle === 'solid' ? solidClasses : transparentClasses;
         class={`NavContenedor ${initialClasses}`}
 >
 
+    <!-- Logo del sitio -->
     <div class="NavLogoWrapper">
-        <a href="/"><img src={logo.src} alt="Logo de la Escuela" class="h-15"></a>
+        <a href="/">
+            <img
+                    src={`${STRAPI_BASE_URL}${data.logo.url}`}
+                    alt="Logo de la Escuela"
+                    class="h-15"
+            >
+        </a>
     </div>
 
+    <!-- Menú de escritorio -->
     <div class="NavMenuEscritorio">
-        <a href="/nosotros" class="NavLinkEscritorio">NOSOTROS</a>
-        <a href="/academico" class="NavLinkEscritorio">ACADÉMICO</a>
-        <a href="/admisiones" class="NavLinkEscritorio">ADMISIONES</a>
-        <a href="/noticias" class="NavLinkEscritorio">NOTICIAS</a>
+        {menuItems.map((item: any) => (
+                <a
+                        href={item.link}
+                        class="NavLinkEscritorio uppercase"
+                >
+                    {item.name}
+                </a>
+        ))}
     </div>
 
-    <button id="menu-btn" class="NavBotonHamburguesa" aria-label="Abrir menú">
+    <!-- Botón hamburguesa para móvil -->
+    <button
+            id="menu-btn"
+            class="NavBotonHamburguesa"
+            aria-label="Abrir menú"
+    >
 
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="NavIcono icon-hamburger">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        <!-- Icono de menú -->
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="NavIcono icon-hamburger"
+        >
+            <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
         </svg>
 
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="NavIcono icon-close hidden text-slate-900">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        <!-- Icono de cerrar -->
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="NavIcono icon-close hidden text-slate-900"
+        >
+            <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+            />
         </svg>
+
     </button>
 
+    <!-- Menú móvil -->
     <div
             id="mobile-menu"
             class="hidden absolute top-full left-0 w-full bg-white/90 backdrop-blur-md flex-col items-center gap-4 py-6 shadow-xl border-t border-gray-100 animate-fade-in"
     >
-        <a href="/" class="NavLinkMovil">
-            Inicio
-        </a>
-        <a href="/nosotros" class="NavLinkMovil">
-            Nosotros
-        </a>
-        <a href="/academico" class="NavLinkMovil">
-            Académico
-        </a>
-        <a href="/admisiones" class="NavLinkMovil">
-            Admisiones
-        </a>
-        <a href="/noticias" class="NavLinkMovil">
-            Noticias
-        </a>
+        {menuItems.map((item: any) => (
+                <a
+                        href={item.link}
+                        class="NavLinkMovil"
+                >
+                    {item.name}
+                </a>
+        ))}
     </div>
 
 </nav>
 
+<!-- Script para comportamiento del scroll -->
 <script src="../assets/js/scroll.js"></script>

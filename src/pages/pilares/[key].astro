@@ -1,0 +1,192 @@
+---
+// Importamos el layout base de Astro
+import Layout from '../../layouts/Layout.astro';
+
+// Importamos funciones y constantes para conectar con Strapi
+import { fetchFromAPI, STRAPI_BASE_URL } from "../../lib/conection";
+
+// Interfaz TypeScript que define la estructura de un Pilar
+interface Pilar {
+    // Clave única del pilar
+    key: string;
+
+    // ID del documento en Strapi
+    documentId: string;
+
+    // Título del pilar
+    titulo: string;
+
+    // Fecha asociada
+    fecha: string;
+
+    // Categoría del contenido
+    categoria: string;
+
+    // Resumen corto
+    resumen: string;
+
+    // Descripción larga
+    descripcion: string;
+
+    // Contenido completo
+    contenido: string;
+
+    // Bajada de título (subtítulo)
+    bajada: string;
+
+    // Clase de color Tailwind personalizada
+    color: string;
+
+    // Imagen principal obtenida desde Strapi
+    imagen: {
+        url: string;
+    };
+
+    // Áreas relacionadas con este pilar
+    areas: {
+        id: number;
+
+        // Nombre del área
+        nombre: string;
+
+        // Descripción del área
+        descripcion: string;
+
+        // Imagen del área (puede ser null si no existe)
+        img: {
+            url: string;
+        } | null;
+    }[];
+}
+
+// Obtenemos textos generales desde Strapi
+const data = await fetchFromAPI('pilar');
+
+// Función de Astro para generar rutas estáticas
+export async function getStaticPaths() {
+
+    // Petición a Strapi con populate para traer imágenes y áreas
+    const pilares = await fetchFromAPI("pilares?populate[imagen]=true&populate[areas][populate][img]=true");
+
+    // Normalizamos la estructura de datos
+    const datos = pilares.data || pilares;
+
+    // Generamos las rutas dinámicas según la key de cada pilar
+    return datos.map((pilar: Pilar) => ({
+        params: { key: pilar.key },
+        props: { pilar }
+    }))
+}
+
+// Obtenemos el pilar actual desde las props de Astro
+const { pilar } = Astro.props as { pilar: Pilar };
+---
+
+<!-- Layout principal de la página -->
+<Layout title={`${pilar.titulo} - Colegio`} navStyle="solid">
+
+    <!-- Header tipo banner con imagen de fondo -->
+    <header class="PaginaBanner relative h-[60vh]">
+        <!-- Capa oscura sobre la imagen usando Tailwind -->
+        <div class="absolute inset-0 bg-slate-900/40 z-10"></div>
+
+        <!-- Imagen de fondo cargada desde Strapi -->
+        <img
+                src={`${STRAPI_BASE_URL}${pilar.imagen?.url}`}
+                alt={pilar.titulo}
+                class="w-full h-full object-cover absolute inset-0"
+        />
+
+        <!-- Contenido centrado sobre el banner -->
+        <div class="relative z-20 h-full flex flex-col justify-center items-center text-center text-white px-4 animate-fade-in-up">
+            <!-- Texto superior obtenido desde Strapi -->
+            <span class="block opacity-90 tracking-widest uppercase text-sm mb-2">
+                {data.titulo}
+            </span>
+
+            <!-- Título principal del pilar -->
+            <h1 class="text-5xl md:text-7xl font-serif italic mb-6">
+                {pilar.titulo}
+            </h1>
+
+            <!-- Bajada o subtítulo -->
+            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto opacity-90">
+                {pilar.bajada}
+            </p>
+        </div>
+    </header>
+
+    <!-- Sección de descripción principal -->
+    <section class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <!-- Línea decorativa vertical -->
+        <div class="w-[1px] h-20 bg-slate-300 mx-auto mb-10"></div>
+
+        <!-- Texto de descripción -->
+        <p class="text-xl md:text-2xl text-slate-700 font-serif leading-relaxed">
+            {pilar.descripcion}
+        </p>
+    </section>
+
+    <!-- Sección de áreas con color dinámico -->
+    <section class={`py-24 px-6 ${pilar.color}`}>
+        <div class="max-w-6xl mx-auto space-y-24">
+
+            <!-- Iteración de áreas desde Strapi -->
+            {pilar.areas.map((area, index) => (
+                    <div class={`flex flex-col md:flex-row items-center gap-12 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+
+                        <!-- Contenedor de imagen de área -->
+                        <div class="w-full md:w-1/2 NuevasTarjetasImagen group shadow-2xl rounded-sm aspect-[4/3] overflow-hidden relative">
+                            <!-- Capa hover sobre la imagen -->
+                            <div class="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition z-10"></div>
+
+                            <!-- Imagen solo si existe en Strapi -->
+                            {area.img && (
+                                    <img
+                                            src={`${STRAPI_BASE_URL}${area.img.url}`}
+                                            alt={area.nombre}
+                                            class="w-full h-full object-cover transition duration-700 transform group-hover:scale-110"
+                                    />
+                            )}
+
+                        </div>
+
+                        <!-- Contenido textual del área -->
+                        <div class="w-full md:w-1/2 text-center md:text-left space-y-4">
+                            <!-- Título del área -->
+                            <h3 class="text-3xl font-serif text-slate-900 italic">
+                                {area.nombre}
+                            </h3>
+
+                            <!-- Línea decorativa según posición -->
+                            <div class={`w-12 h-[2px] bg-slate-900 ${index % 2 === 1 ? 'md:ml-auto' : ''} mx-auto md:mx-0`}></div>
+
+                            <!-- Descripción del área -->
+                            <p class="text-slate-600 leading-relaxed font-light text-lg">
+                                {area.descripcion}
+                            </p>
+                        </div>
+
+                    </div>
+            ))}
+
+        </div>
+    </section>
+
+    <!-- Sección final con enlace para volver -->
+    <div class="bg-slate-900 text-white py-16 text-center">
+        <!-- Texto de exploración -->
+        <p class="text-stone-400 text-sm uppercase tracking-widest mb-4">{data.explorar}</p>
+
+        <!-- Enlace de regreso -->
+        <a href="/" class="inline-flex items-center gap-2 hover:text-stone-300 transition-colors">
+            {data.volver}
+
+            <!-- Ícono SVG de flecha -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+            </svg>
+        </a>
+    </div>
+
+</Layout>

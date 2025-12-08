@@ -1,0 +1,116 @@
+---
+//// Importamos el layout base de Astro
+import Layout from '../../layouts/Layout.astro';
+
+// Definimos la interfaz TypeScript para una noticia
+export interface NoticiasInterface {
+    // Título de la noticia
+    titulo: string;
+
+    // Fecha de publicación
+    fecha: string;
+
+    // Categoría de la noticia
+    categoria: string;
+
+    // Imagen principal obtenida desde Strapi
+    imagen: {
+        url: string;
+    };
+
+    // Resumen corto de la noticia
+    resumen: string;
+
+    // Contenido completo en HTML desde Strapi
+    contenido: string;
+
+    // Clave única usada para las rutas dinámicas
+    key: string;
+
+    // URL amigable de la noticia
+    url: string;
+}
+
+// Importamos funciones para conexión con Strapi
+import { fetchFromAPI, STRAPI_BASE_URL } from "../../lib/conection";
+
+// Función de Astro para generar rutas estáticas
+export async function getStaticPaths() {
+    // Obtenemos todas las noticias desde Strapi
+    const noticias: NoticiasInterface[] = await fetchFromAPI('noticias');
+
+    // Creamos las rutas dinámicas usando la key
+    return noticias.map(noticia => ({
+        params: { key: noticia.key },
+        props: { noticia },
+    }));
+}
+
+// Obtenemos la noticia actual desde Astro.props
+const { noticia } = Astro.props;
+
+---
+
+<!-- Layout principal con título dinámico -->
+<Layout title={noticia.titulo} navStyle="solid">
+
+    <!-- Header con imagen de fondo -->
+    <header class="relative w-full h-[60vh] min-h-[400px]">
+
+        <!-- Capa oscura sobre la imagen -->
+        <div class="absolute inset-0 bg-slate-900/40 z-10"></div>
+
+        <!-- Imagen de portada desde Strapi -->
+        <img
+                src={`${STRAPI_BASE_URL}${noticia.imagen.url}`}
+                alt={noticia.titulo}
+                class="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <!-- Contenedor del texto centrado -->
+        <div class="relative z-20 h-full max-w-4xl mx-auto px-6 flex flex-col justify-center text-center text-white">
+
+            <!-- Categoría y fecha de la noticia -->
+            <div class="mb-6 flex justify-center items-center gap-4 text-sm font-bold tracking-widest uppercase">
+                <span class="bg-white text-slate-900 px-4 py-1.5 rounded-full text-xs shadow-md">{noticia.categoria}</span>
+                <span class="text-stone-300">{noticia.fecha}</span>
+            </div>
+
+            <!-- Título principal -->
+            <h1 class="text-4xl md:text-6xl font-serif italic leading-tight">
+                {noticia.titulo}
+            </h1>
+        </div>
+    </header>
+
+    <!-- Cuerpo de la noticia -->
+    <article class="max-w-2xl mx-auto px-6 py-20">
+
+        <!-- Resumen destacado de la noticia -->
+        <p class="text-xl md:text-2xl font-serif text-slate-800 leading-relaxed mb-10 border-l-4 border-slate-900 pl-6 italic">
+            "{noticia.resumen}"
+        </p>
+
+        <!-- Contenido principal renderizado como HTML desde Strapi -->
+        <div
+                class="prose prose-lg prose-slate prose-headings:font-serif prose-a:text-slate-900 hover:prose-a:text-slate-600 font-light text-slate-600 max-w-full"
+                set:html={noticia.contenido}
+        />
+
+        <!-- Sección para volver al listado de noticias -->
+        <div class="mt-20 pt-10 border-t border-slate-200 text-center">
+            <a
+                    href="/noticias"
+                    class="inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-slate-900 hover:text-slate-600 transition"
+            >
+                <!-- Ícono de flecha SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+                Volver a Noticias
+            </a>
+        </div>
+
+    </article>
+
+</Layout>

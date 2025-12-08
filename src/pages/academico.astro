@@ -1,7 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Imagen1  from '../assets/images/dibujando.avif';
-
+// Fetch de datos de la página de academico desde Strapi
+import { fetchFromAPI, STRAPI_BASE_URL } from "../lib/conection";
+const academico = await fetchFromAPI('academico');
+const menuItems = academico?.items_parvularia || [];
+const menuItems2 = academico?.items_basica || [];
 ---
 
 <Layout navStyle="solid" title="Niveles Educativos">
@@ -11,7 +14,7 @@ import Imagen1  from '../assets/images/dibujando.avif';
         <div class="BannerOscuro bg-slate-900/40 z-10"></div>
 
         <img
-                src={Imagen1.src}
+                src={`${STRAPI_BASE_URL}${academico.imagen.url}`}
                 alt="Educación Parvularia y Básica"
                 class="BannerOscuro w-full h-full object-cover object-center"
         />
@@ -19,12 +22,11 @@ import Imagen1  from '../assets/images/dibujando.avif';
         <div class="BannerContenido px-6 max-w-4xl mx-auto flex flex-col items-center mt-24">
 
             <p class="SubtituloSmall text-white/90">
-                Nuestro Proyecto Educativo
+                {academico.bajada_principal}
             </p>
 
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif italic leading-tight text-white drop-shadow-md">
-                Educación Parvularia & <br class="hidden md:block"/>
-                <span class="not-italic">Enseñanza Básica</span>
+                {academico.titulo_principal}
             </h1>
 
         </div>
@@ -33,37 +35,27 @@ import Imagen1  from '../assets/images/dibujando.avif';
 
     <section class="SectionContenido bg-stone-50">
         <h2 class="SectionTitulo text-slate-900 mb-14 text-center">
-            Educación Parvularia
+            {academico.titulo_seccion_1}
         </h2>
 
         <div class="grid md:grid-cols-3 gap-10">
 
-            <div class="TarjetaFeature">
-                <div class="ContenedorIconoTarjeta">🧩</div>
-                <h3 class="text-xl font-serif text-slate-900 mb-2 italic">Juego</h3>
-                <p class="text-slate-600 font-light leading-relaxed">
-                    El juego es el motor del aprendizaje temprano, permitiendo explorar, crear
-                    y expresar emociones en un entorno seguro.
-                </p>
-            </div>
+            {menuItems.map((item: any, index: any) => (
+                    <div class="TarjetaFeature">
+                        {/* Ícono */}
+                        <div class="ContenedorIconoTarjeta">{item.icono}</div>
 
-            <div class="TarjetaFeature">
-                <div class="ContenedorIconoTarjeta">🔬</div>
-                <h3 class="text-xl font-serif text-slate-900 mb-2 italic">Descubrimiento</h3>
-                <p class="text-slate-600 font-light leading-relaxed">
-                    Fomentamos la curiosidad mediante experiencias sensoriales y cognitivas que
-                    impulsan el pensamiento creativo y la resolución de problemas.
-                </p>
-            </div>
+                        {/* Título */}
+                        <h3 class="text-xl font-serif text-slate-900 mb-2 italic">
+                            {item.titulo}
+                        </h3>
 
-            <div class="TarjetaFeature">
-                <div class="ContenedorIconoTarjeta">🤝</div>
-                <h3 class="text-xl font-serif text-slate-900 mb-2 italic">Socialización</h3>
-                <p class="text-slate-600 font-light leading-relaxed">
-                    Desarrollamos habilidades socioemocionales fortaleciendo la convivencia,
-                    el respeto, la empatía y el trabajo colaborativo.
-                </p>
-            </div>
+                        {/* Descripción */}
+                        <p class="text-slate-600 font-light leading-relaxed">
+                            {item.texto}
+                        </p>
+                    </div>
+            ))}
 
         </div>
     </section>
@@ -71,60 +63,26 @@ import Imagen1  from '../assets/images/dibujando.avif';
     <section class="bg-white border-t border-stone-200 py-24 px-6">
         <div class="max-w-7xl mx-auto">
 
-            <h2 class="SectionTitulo text-slate-900 italic mb-14">
-                Enseñanza Básica (1° a 8° Básico)
+            {/* Título de la Sección */}
+            <h2 class="SectionTitulo text-slate-900 italic mb-14 text-center">
+                {academico.titulo_seccion_2}
             </h2>
 
+            {/* Contenedor de las Tarjetas */}
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {menuItems2.map((item: any, index: any) => (
+                        <div class="TarjetaFeature">
+                            {/* Título de la Tarjeta */}
+                            <h3 class="text-xl font-serif text-slate-900 mb-3 italic">
+                                {item.titulo}
+                            </h3>
 
-                <div class="TarjetaFeature">
-                    <h3 class="text-xl font-serif text-slate-900 mb-3 italic">1° y 2° Básico</h3>
-                    <p class="text-slate-600 font-light leading-relaxed">
-                        Se consolidan la lectura, escritura y el pensamiento matemático
-                        mediante metodologías activas y lúdicas.
-                    </p>
-                </div>
-
-                <div class="TarjetaFeature">
-                    <h3 class="text-xl font-serif text-slate-900 mb-3 italic">3° y 4° Básico</h3>
-                    <p class="text-slate-600 font-light leading-relaxed">
-                        Se amplían habilidades lectoras, comprensión del entorno social y
-                        pensamiento lógico, junto con expresión artística.
-                    </p>
-                </div>
-
-                <div class="TarjetaFeature">
-                    <h3 class="text-xl font-serif text-slate-900 mb-3 italic">5° y 6° Básico</h3>
-                    <p class="text-slate-600 font-light leading-relaxed">
-                        Profundizamos en ciencias, matemáticas, investigación, redacción
-                        y habilidades tecnológicas.
-                    </p>
-                </div>
-
-                <div class="TarjetaFeature">
-                    <h3 class="text-xl font-serif text-slate-900 mb-3 italic">7° y 8° Básico</h3>
-                    <p class="text-slate-600 font-light leading-relaxed">
-                        Preparamos la transición a Educación Media fortaleciendo el
-                        pensamiento crítico, la argumentación y el trabajo en equipo.
-                    </p>
-                </div>
-
-                <div class="TarjetaFeature">
-                    <h3 class="text-xl font-serif text-slate-900 mb-3 italic">Talleres Formativos</h3>
-                    <p class="text-slate-600 font-light leading-relaxed">
-                        Música, artes visuales, deportes, ciencias, robótica y más
-                        para potenciar los talentos personales.
-                    </p>
-                </div>
-
-                <div class="bg-white border border-stone-200 rounded-sm shadow-sm p-8 transition duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <h3 class="text-xl font-serif text-slate-900 mb-3 italic">Convivencia Escolar</h3>
-                    <p class="text-slate-600 font-light leading-relaxed">
-                        Desarrollamos liderazgo, mediación, respeto e inclusión mediante
-                        proyectos de formación ciudadana.
-                    </p>
-                </div>
-
+                            {/* Descripción */}
+                            <p class="text-slate-600 font-light leading-relaxed">
+                                {item.texto}
+                            </p>
+                        </div>
+                ))}
             </div>
         </div>
     </section>
