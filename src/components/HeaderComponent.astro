@@ -1,39 +1,121 @@
 ---
-// src/components/HeaderComponent.astro
-import logo from '../assets/images/logo.png'
+// Importamos funciones de conexión con Strapi
+import { fetchFromAPI, STRAPI_BASE_URL } from '../lib/conection'
 
+// Obtenemos la base URL del proyecto desde Astro
+const base = import.meta.env.BASE_URL
+
+// Traemos los datos del menú desde Strapi
+const data = await fetchFromAPI('nav')
+
+// Obtenemos los ítems del menú o un arreglo vacío si no hay datos
+const menuItems = data?.nav || []
+
+// Interfaz para las props del componente
 interface Props {
-    navStyle?: 'transparent' | 'solid';
+    // Estilo de navegación: transparente o sólida
+    navStyle?: 'transparent' | 'solid'
 }
 
-const { navStyle = 'transparent' } = Astro.props;
+// Obtenemos el estilo de navegación desde las props
+const { navStyle = 'transparent' } = Astro.props
 
-// LÓGICA CSS (Server Side):
-// Definimos las clases exactas para que coincidan con las que usa el JS después
-const solidClasses = "bg-white/90 backdrop-blur-md text-slate-900 shadow-sm py-4 border-gray-100";
-const transparentClasses = "bg-transparent text-white py-6 border-transparent";
+// Clases CSS para el estado sólido del navbar
+const solidClasses = "NavEstadoSolido"
 
-// Si navStyle es 'solid', usamos las clases sólidas. Si no, las transparentes.
-const initialClasses = navStyle === 'solid' ? solidClasses : transparentClasses;
+// Clases CSS para el estado transparente del navbar
+const transparentClasses = "NavEstadoTransparente"
+
+// Definimos las clases iniciales según el estilo recibido
+const initialClasses = navStyle === 'solid' ? solidClasses : transparentClasses
 ---
 
 <nav
         id="navbar"
         data-style={navStyle}
-        class={`fixed w-full z-50 top-0 px-8 flex justify-center items-center transition-all duration-500 border-b ${initialClasses}`}
+        class={`NavContenedor ${initialClasses}`}
 >
 
-    <div class="text-2xl font-bold tracking-widest uppercase">
-        <a href="/"><img src={logo.src} alt="Logo de la Escuela" class="h-15"></a>
+    <!-- Logo del sitio -->
+    <div class="NavLogoWrapper">
+        <a href="/">
+            <img
+                    src={`${STRAPI_BASE_URL}${data.logo.url}`}
+                    alt="Logo de la Escuela"
+                    class="h-15"
+            >
+        </a>
     </div>
 
-    <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide ml-12">
-        <a href="/nosotros" class="hover:opacity-70 transition">NOSOTROS</a>
-        <a href="#" class="hover:opacity-70 transition">ACADÉMICO</a>
-        <a href="#" class="hover:opacity-70 transition">ADMISIONES</a>
-        <a href="/noticias" class="hover:opacity-70 transition">NOTICIAS</a>
+    <!-- Menú de escritorio -->
+    <div class="NavMenuEscritorio">
+        {menuItems.map((item: any) => (
+                <a
+                        href={item.link}
+                        class="NavLinkEscritorio uppercase"
+                >
+                    {item.name}
+                </a>
+        ))}
+    </div>
+
+    <!-- Botón hamburguesa para móvil -->
+    <button
+            id="menu-btn"
+            class="NavBotonHamburguesa"
+            aria-label="Abrir menú"
+    >
+
+        <!-- Icono de menú -->
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="NavIcono icon-hamburger"
+        >
+            <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+        </svg>
+
+        <!-- Icono de cerrar -->
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="NavIcono icon-close hidden text-slate-900"
+        >
+            <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+            />
+        </svg>
+
+    </button>
+
+    <!-- Menú móvil -->
+    <div
+            id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-white/90 backdrop-blur-md flex-col items-center gap-4 py-6 shadow-xl border-t border-gray-100 animate-fade-in"
+    >
+        {menuItems.map((item: any) => (
+                <a
+                        href={item.link}
+                        class="NavLinkMovil"
+                >
+                    {item.name}
+                </a>
+        ))}
     </div>
 
 </nav>
 
+<!-- Script para comportamiento del scroll -->
 <script src="../assets/js/scroll.js"></script>

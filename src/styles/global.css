@@ -1,2 +1,194 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+@layer components {
+    /* Secciones y Contenedores */
+
+    .SectionContenido {
+        /* Contenedor principal para la mayoría de las secciones */
+        @apply max-w-7xl mx-auto px-6 py-24;
+    }
+
+    /* Tipografía */
+
+    .SectionTitulo {
+        /* Para títulos de sección principales (h2) */
+        @apply text-3xl md:text-4xl font-serif italic;
+    }
+
+    .SubtituloSmall {
+        /* Para textos de introducción en mayúsculas sobre los títulos */
+        @apply text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4;
+    }
+
+    .BannerIntro {
+        /* Para textos de introducción en el banner principal */
+        @apply text-sm md:text-base uppercase tracking-[0.3em] mb-4;
+    }
+
+    .PaginaBanner {
+        /* Contenedor de encabezado de página*/
+        @apply relative h-[70vh] min-h-[500px] w-full flex items-center justify-center overflow-hidden;
+    }
+
+    .BannerOscuro {
+        /* Capa oscura sobre la imagen del banner */
+        @apply absolute inset-0;
+    }
+
+    .BannerContenido {
+        /* Contenedor del texto dentro del banner */
+        @apply relative z-20;
+    }
+
+    .BannerMeta {
+        /* Texto meta (fecha) en el banner de noticia */
+        @apply flex items-center gap-4 text-xs text-slate-400 font-medium tracking-widest uppercase;
+    }
+
+    .ArticuloCita {
+        /* Estilo para el bloque de cita/resumen destacado dentro de un artículo */
+        @apply text-xl md:text-2xl font-serif leading-relaxed;
+    }
+
+    .ArticuloProse {
+        /* Estilo del bloque de contenido HTML usando el plugin @tailwindcss/typography */
+        @apply prose prose-lg prose-slate prose-headings:font-serif prose-a:text-blue-900 font-light text-slate-600;
+    }
+
+    /* Tarjetas de Contenido */
+
+    .TarjetaFeature {
+        /* Tarjetas de características y pilares */
+        @apply bg-white border border-stone-200 rounded-sm shadow-sm p-10 text-center transition duration-300 hover:shadow-xl hover:-translate-y-1;
+    }
+
+    .ContenedorIconoTarjeta {
+        /* Contenedor circular de los iconos dentro de las TarjetaFeature */
+        @apply w-20 h-20 bg-slate-100 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl text-slate-700;
+    }
+
+    .TarjetaPilar {
+        /* Tarjeta principal para la sección de Pilares */
+        @apply relative h-[300px] md:h-[500px] overflow-hidden cursor-pointer block;
+    }
+
+    .TarjetaPilarImagen {
+        /* Imagen dentro de la TarjetaPilar (efecto hover) */
+        @apply w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100;
+    }
+
+    .TarjetaPilarTextoContenedor {
+        /* Contenedor de texto con gradiente en TarjetaPilar */
+        @apply absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/80 to-transparent;
+    }
+
+    .TarjetaPilarDescripcion {
+        /* Párrafo de descripción en TarjetaPilar */
+        @apply h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 text-sm text-gray-300 transition-all duration-500;
+    }
+
+    .NuevasTarjetasImagen {
+        @apply relative overflow-hidden;
+    }
+
+    /* Formulario y Botones */
+
+    .FormInput {
+        /* Estilo general para <input>, <select> y <textarea> */
+        @apply w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none;
+    }
+
+    .BtnPrimario {
+        /* Botón principal de la página de admisiones */
+        @apply w-full py-4 border border-black rounded-xl text-black transition hover:bg-black hover:text-white;
+    }
+
+    .FormContenedor {
+        /* Contenedor principal para formularios */
+        @apply space-y-6 bg-white border border-black/10 p-10 rounded-2xl shadow-sm;
+    }
+
+    .FormLabel {
+        /* Etiqueta de los campos de formulario */
+        @apply block text-black font-medium mb-1;
+    }
+
+
+    /* Noticias/Blog */
+
+
+    .LinkLeerMas {
+        /* Enlace de 'Leer más' en tarjetas de noticia */
+        @apply inline-block pt-2 text-xs font-bold uppercase tracking-widest border-b border-slate-300 pb-1 hover:border-slate-900 transition mt-2;
+    }
+
+
+    /* Footer */
+
+    .FooterContenedor {
+        /* Contenedor principal del footer */
+        @apply bg-slate-950 text-stone-400 py-20 text-center;
+    }
+
+    .FooterTitulo {
+        /* Título principal del footer */
+        @apply text-4xl font-serif text-white mb-8;
+    }
+
+    .FooterEslogan {
+        /* Eslogan/Texto pequeño del footer */
+        @apply text-sm uppercase tracking-widest;
+    }
+
+    /* Links */
+
+    .LinkSectionVolver {
+        /* Enlace para volver a la sección principal */
+        @apply text-3xl font-serif italic hover:text-stone-300 transition inline-flex items-center gap-2;
+    }
+
+    /* Nav */
+
+    /* Contenedor Principal */
+    .NavContenedor {
+        @apply fixed w-full z-50 top-0 px-8 flex justify-center items-center transition-all duration-500 border-b;
+    }
+
+    /* Estados de la barra (Para el efecto Scroll) */
+    .NavEstadoSolido {
+        @apply bg-white/90 backdrop-blur-md text-slate-900 shadow-sm py-4 border-gray-100;
+    }
+
+    .NavEstadoTransparente {
+        @apply bg-transparent text-white py-6 border-transparent;
+    }
+
+    /* Logo */
+    .NavLogoWrapper {
+        @apply text-2xl font-bold tracking-widest uppercase;
+    }
+
+    /* Menú Escritorio */
+    .NavMenuEscritorio {
+        @apply hidden md:flex gap-8 text-sm font-medium tracking-wide ml-12;
+    }
+
+    .NavLinkEscritorio {
+        @apply hover:opacity-70 transition;
+    }
+
+    /* Botón Hamburguesa */
+    .NavBotonHamburguesa {
+        @apply md:hidden p-2 -mr-2 cursor-pointer transition hover:opacity-70 z-50 relative text-inherit;
+    }
+
+    .NavIcono {
+        @apply w-8 h-8;
+    }
+
+    .NavLinkMovil {
+        @apply text-sm font-bold uppercase tracking-widest text-slate-900 hover:text-slate-500 transition;
+    }
+
+}

@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+// Fetch de datos de la página de academico desde Strapi
+import { fetchFromAPI, STRAPI_BASE_URL } from "../lib/conection";
+const academico = await fetchFromAPI('academico');
+const menuItems = academico?.items_parvularia || [];
+const menuItems2 = academico?.items_basica || [];
+---
+
+<Layout navStyle="solid" title="Niveles Educativos">
+
+    <section class=" h-[60vh] min-h-[500px] w-full flex items-center justify-center NuevasTarjetasImagen text-center">
+
+        <div class="BannerOscuro bg-slate-900/40 z-10"></div>
+
+        <img
+                src={`${STRAPI_BASE_URL}${academico.imagen.url}`}
+                alt="Educación Parvularia y Básica"
+                class="BannerOscuro w-full h-full object-cover object-center"
+        />
+
+        <div class="BannerContenido px-6 max-w-4xl mx-auto flex flex-col items-center mt-24">
+
+            <p class="SubtituloSmall text-white/90">
+                {academico.bajada_principal}
+            </p>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif italic leading-tight text-white drop-shadow-md">
+                {academico.titulo_principal}
+            </h1>
+
+        </div>
+
+    </section>
+
+    <section class="SectionContenido bg-stone-50">
+        <h2 class="SectionTitulo text-slate-900 mb-14 text-center">
+            {academico.titulo_seccion_1}
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-10">
+
+            {menuItems.map((item: any, index: any) => (
+                    <div class="TarjetaFeature">
+                        {/* Ícono */}
+                        <div class="ContenedorIconoTarjeta">{item.icono}</div>
+
+                        {/* Título */}
+                        <h3 class="text-xl font-serif text-slate-900 mb-2 italic">
+                            {item.titulo}
+                        </h3>
+
+                        {/* Descripción */}
+                        <p class="text-slate-600 font-light leading-relaxed">
+                            {item.texto}
+                        </p>
+                    </div>
+            ))}
+
+        </div>
+    </section>
+
+    <section class="bg-white border-t border-stone-200 py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+
+            {/* Título de la Sección */}
+            <h2 class="SectionTitulo text-slate-900 italic mb-14 text-center">
+                {academico.titulo_seccion_2}
+            </h2>
+
+            {/* Contenedor de las Tarjetas */}
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {menuItems2.map((item: any, index: any) => (
+                        <div class="TarjetaFeature">
+                            {/* Título de la Tarjeta */}
+                            <h3 class="text-xl font-serif text-slate-900 mb-3 italic">
+                                {item.titulo}
+                            </h3>
+
+                            {/* Descripción */}
+                            <p class="text-slate-600 font-light leading-relaxed">
+                                {item.texto}
+                            </p>
+                        </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+</Layout>

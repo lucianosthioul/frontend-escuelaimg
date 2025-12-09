@@ -1,0 +1,185 @@
+---
+
+import Layout from '../layouts/Layout.astro';
+// Fetch de datos de la página de admisiones desde Strapi
+import { fetchFromAPI, STRAPI_BASE_URL } from "../lib/conection";
+const data = await fetchFromAPI(
+  "admisione"
+);
+const menuItems = data?.form || [];
+const menuItems2 = data?.form2 || [];
+---
+
+<Layout title="Admisiones" navStyle="solid">
+
+
+    <!-- FORMULARIO DE ADMISIÓN -->
+    <section class="bg-white border-t border-black/10 py-24 px-6 pt-35">
+        <div class="max-w-3xl mx-auto">
+
+            <h2 class="text-3xl md:text-4xl font-serif italic text-black text-center mb-10">
+                {data.titulo1}
+            </h2>
+
+            <p class="text-black/60 text-center mb-12">
+                {data.subtitle1}
+            </p>
+
+            <form id="admisionForm" class="space-y-6 bg-white border border-black/10 p-10 rounded-2xl shadow-sm">
+
+                {/* Campo: Nombre del Apoderado */}
+                <div>
+                    <label class="block text-black font-medium mb-1">
+                        {menuItems.apoderado}
+                    </label>
+                    <input
+                            type="text"
+                            name="apoderado"
+                            required
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                    />
+                </div>
+
+                {/* Campo: Nombre del Estudiante */}
+                <div>
+                    <label class="block text-black font-medium mb-1">
+                        {menuItems.estudiante}
+                    </label>
+                    <input
+                            type="text"
+                            name="estudiante"
+                            required
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                    />
+                </div>
+
+                {/* Campo: Nivel al que Postula (Select) */}
+                <div>
+                    <label class="block text-black font-medium mb-1">
+                        {menuItems.nivel}
+                    </label>
+                    <select
+                            name="nivel"
+                            required
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 bg-white focus:ring-1 focus:ring-black outline-none"
+                    >
+                        <option value="">Seleccionar…</option>
+                        {/* Mapeo del arreglo JSON de niveles_educativos */}
+                        {menuItems.niveles_educativos.map((nivel: any) => (
+                                <option value={nivel}>
+                                    {nivel}
+                                </option>
+                        ))}
+                    </select>
+                </div>
+
+                {/* Campo: Email */}
+                <div>
+                    <label class="block text-black font-medium mb-1">
+                        {menuItems.email}
+                    </label>
+                    <input
+                            type="email"
+                            name="email"
+                            required
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                    />
+                </div>
+
+                {/* Campo: Mensaje */}
+                <div>
+                    <label class="block text-black font-medium mb-1">
+                        {menuItems.mensaje}
+                    </label>
+                    <textarea
+                            name="mensaje"
+                            rows="4"
+                            class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                    ></textarea>
+                </div>
+
+                {/* Botón de Enviar */}
+                <button
+                        type="submit"
+                        class="w-full py-4 border border-black rounded-xl text-black hover:bg-black hover:text-white transition"
+                >
+                    {menuItems.submit}
+                </button>
+
+                {/* Mensaje de éxito */}
+                <p id="successMsg" class="text-green-600 text-center font-medium hidden">
+                    {menuItems.success}
+                </p>
+            </form>
+
+        </div>
+    </section>
+
+
+    <!-- CONTACTO -->
+<section class="bg-white border-t border-black/10 py-24 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+
+        <h2 class="text-3xl md:text-4xl font-serif italic text-black mb-10">
+            {data.titulo2}
+        </h2>
+
+        <p class="text-black/60 mb-12">
+            {data.subtitle2}
+        </p>
+
+        <form id="contactForm" class="space-y-6 bg-white border border-black/10 p-10 rounded-2xl shadow-sm text-left">
+
+            <!-- Nombre -->
+            <div>
+                <label class="block text-black font-medium mb-1">{menuItems2.nombre}</label>
+                <input
+                        type="text"
+                        name="nombre"
+                        required
+                        class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                />
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="block text-black font-medium mb-1">{menuItems2.email}</label>
+                <input
+                        type="email"
+                        name="email"
+                        required
+                        class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                />
+            </div>
+
+            <!-- Mensaje -->
+            <div>
+                <label class="block text-black font-medium mb-1">{menuItems2.mensaje}</label>
+                <textarea
+                        name="mensaje"
+                        rows="5"
+                        required
+                        class="w-full border border-black/20 rounded-lg px-4 py-3 focus:ring-1 focus:ring-black outline-none"
+                ></textarea>
+            </div>
+
+            <!-- Botón -->
+            <button
+                    type="submit"
+                    class="w-full py-4 border border-black rounded-xl text-black hover:bg-black hover:text-white transition"
+            >
+                {menuItems2.submit}
+            </button>
+
+            <p id="contactMsg" class="text-green-600 text-center font-medium hidden">
+                {menuItems2.success}
+            </p>
+
+        </form>
+
+    </div>
+</section>
+
+</Layout>
+
+<script src="../assets/js/formulario.js"></script>

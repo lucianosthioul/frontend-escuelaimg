@@ -1,31 +1,61 @@
 ---
+// Importamos los estilos globales
 import '../styles/global.css'
+
+// Importamos el componente del header
 import HeaderComponent from '../components/HeaderComponent.astro'
+
+// Importamos el componente del footer
 import FooterComponent from '../components/FooterComponent.astro'
 
+// Importamos función y constante para consumir datos desde Strapi
+import { fetchFromAPI, STRAPI_BASE_URL } from '../lib/conection';
+
+// Obtenemos los datos del favicon desde Strapi
+const data = await fetchFromAPI('favicon');
+
+// Interface para las props del layout
 interface Props {
+    // Título dinámico de la página
     title: string;
-    // AGREGA ESTA LÍNEA (El ? significa que es opcional)
+
+    // Estilo de navegación: transparente o sólido
     navStyle?: 'transparent' | 'solid';
 }
 
-// Extraemos navStyle con un valor por defecto
+// Obtenemos las props y definimos valor por defecto
 const { title, navStyle = 'transparent' } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- Configuración de codificación de caracteres -->
     <meta charset="UTF-8" />
+
+    <!-- Configuración para diseño responsive -->
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Favicon dinámico cargado desde Strapi -->
+    <link rel="icon" href={`${STRAPI_BASE_URL}${data.icono.url}`} type="image/x-icon">
+
+    <!-- Meta etiqueta generada automáticamente por Astro -->
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Título dinámico de la página -->
     <title>{title}</title>
 </head>
+
 <body class="bg-stone-50 text-slate-900 antialiased">
 
+<!--  Render del componente Header con estilo dinámico -->
 <HeaderComponent navStyle={navStyle} />
 
+<!-- Aquí se inyecta el contenido de cada página -->
 <slot />
+
+<!-- Render del componente Footer -->
 <FooterComponent />
+
 </body>
 </html>

@@ -1,41 +1,94 @@
-// src/assets/js/scroll.js
 
-const navbar = document.getElementById('navbar');
+document.addEventListener('DOMContentLoaded', () => {
 
-// Leemos la configuración que enviamos desde Astro
-// Si no encuentra el atributo, asume que es 'transparent' por seguridad
-const currentStyle = navbar.getAttribute('data-style') || 'transparent';
+    // Referencias a elementos
+    const navbar = document.getElementById('navbar');
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconHamburger = document.querySelector('.icon-hamburger');
+    const iconClose = document.querySelector('.icon-close');
 
-// Definimos las listas de clases para mantener el código ordenado
-const solidClasses = ['bg-white/90', 'backdrop-blur-md', 'text-slate-900', 'shadow-sm', 'py-4', 'border-gray-100'];
-const transparentClasses = ['bg-transparent', 'text-white', 'py-6', 'border-transparent'];
+    // Si no hay navbar, no se hace nada
+    if (!navbar) return;
 
-function handleScroll() {
-    if (window.scrollY > 50) {
-        // BAJANDO: Poner modo sólido
-        navbar.classList.add(...solidClasses);
-        navbar.classList.remove(...transparentClasses);
-    } else {
-        // ARRIBA: Poner modo transparente
-        navbar.classList.add(...transparentClasses);
-        navbar.classList.remove(...solidClasses);
+    // Configuración de Estilos
+    // Se lee el estilo inicial (solid o transparent)
+    const currentStyle = navbar.getAttribute('data-style') || 'transparent';
+
+    // Clases para el modo SÓLIDO
+    const solidClasses = ['bg-white/90', 'backdrop-blur-md', 'text-slate-900', 'shadow-sm', 'py-4', 'border-gray-100'];
+
+    // Clases para el modo TRANSPARENTE
+    const transparentClasses = ['bg-transparent', 'text-white', 'py-6', 'border-transparent'];
+
+
+    // Funcion de Scroll
+    function handleScroll() {
+        // Si el menú móvil está abierto, no cambiamos colores al hacer scroll
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) return;
+
+        if (window.scrollY > 50) {
+            // Bajando: Modo Sólido
+            navbar.classList.add(...solidClasses);
+            navbar.classList.remove(...transparentClasses);
+        } else {
+            // Arriba: Modo Transparente (solo si la página no es sólida por defecto)
+            if (currentStyle !== 'solid') {
+                navbar.classList.add(...transparentClasses);
+                navbar.classList.remove(...solidClasses);
+            }
+        }
     }
-}
 
-// LÓGICA PRINCIPAL:
-if (currentStyle === 'solid') {
-    // CASO 1: NOTICIAS (Fondo blanco)
-    // No hacemos nada. El CSS ya viene con las clases 'solidClasses' puestas desde Astro.
-    // No agregamos el eventListener, así que al bajar el scroll el menú NO cambia.
-    // (Opcional: Si quieres asegurarte, puedes forzar las clases aquí, pero no es necesario)
-
-} else {
-    // CASO 2: HOME (Fondo imagen)
-    // Agregamos el detector de scroll para que cambie dinámicamente
+    // Activamos el evento scroll solo si la página no es fija (como 'Nosotros' o 'Home')
     window.addEventListener('scroll', handleScroll);
 
-    // Ejecutamos una vez al inicio por si el usuario recarga la página ya scrolleada
-    handleScroll();
-}
+
+    // Menu Movil
+    if (menuBtn && mobileMenu && iconHamburger && iconClose) {
+
+        const toggleMenu = () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+
+            if (isHidden) {
+                // Abrir Menu
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+
+                // Forzamos la barra a sólido
+                navbar.classList.add(...solidClasses);
+                navbar.classList.remove(...transparentClasses);
 
 
+            } else {
+                // Cerrar Menu
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+
+                // Restauramos el color de la barra según la posición del scroll
+                if (window.scrollY <= 50 && currentStyle !== 'solid') {
+                    navbar.classList.add(...transparentClasses);
+                    navbar.classList.remove(...solidClasses);
+                }
+                // Si bajamos scroll o es una página sólida, se queda en blanco
+            }
+
+            // Alternar iconos (Hamburguesa vs X)
+            iconHamburger.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        };
+
+        // Evento Click en el botón
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Cerrar menú automáticamente al ir a otra sección
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                // Forzamos cierre
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMenu();
+                }
+            });
+        });
+    }
+});
