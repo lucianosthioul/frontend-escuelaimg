@@ -39,10 +39,10 @@ import Layout from '../layouts/Layout.astro';
                 <Image src={`${STRAPI_BASE_URL}${data.imagen2.url}` || ''}
                        alt="Vida de estudiantes"
                        inferSize={true}
-                       class="w-full h-[600px] object-cover rounded-sm shadow-xl"
+                       class="w-full h-[400px] md:h-[600px] object-cover rounded-sm shadow-xl"
                 />
             </div>
-            {/* Columna de texto - orden cambia en responsive */}
+            {/* Columna de texto */}
             <div class="order-1 md:order-2 space-y-8">
                 <h2 class="text-4xl md:text-5xl text-slate-900 leading-tight">
                     {data.subtitle2}
@@ -72,7 +72,7 @@ import Layout from '../layouts/Layout.astro';
             <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
 
                 {/* Primer pilar: Arte y Cultura */}
-                <a href="/pilares/arte-cultura" class="group relative h-[500px] overflow-hidden cursor-pointer block">
+                <a href="/pilares/arte-cultura" class="group relative h-[300px] md:h-[500px] overflow-hidden cursor-pointer block">
                     <Image src={`${STRAPI_BASE_URL}${data.slider1.url}` || ''} inferSize={true}
                            alt=""
                            class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
@@ -90,7 +90,7 @@ import Layout from '../layouts/Layout.astro';
                 </a>
 
                 {/* Segundo pilar: Ciencias - con desplazamiento negativo en md */}
-                <a href="/pilares/ciencias" class="group relative h-[500px] overflow-hidden cursor-pointer block md:-mt-12">
+                <a href="/pilares/ciencias" class="group relative h-[300px] md:h-[500px] overflow-hidden cursor-pointer block md:-mt-12">
                     <Image src={`${STRAPI_BASE_URL}${data.slider2.url}` || ''} inferSize={true}
                            alt=""
                            class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
@@ -106,7 +106,7 @@ import Layout from '../layouts/Layout.astro';
                 </a>
 
                 {/* Tercer pilar: Deportes */}
-                <a href="/pilares/deportes" class="group relative h-[500px] overflow-hidden cursor-pointer block">
+                <a href="/pilares/deportes" class="group relative h-[300px] md:h-[500px] overflow-hidden cursor-pointer block">
                     <Image src={`${STRAPI_BASE_URL}${data.slider3.url}` || ''} inferSize={true}
                            alt=""
                            class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
