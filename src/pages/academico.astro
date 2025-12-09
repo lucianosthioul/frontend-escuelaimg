@@ -9,7 +9,8 @@ const menuItems2 = academico?.items_basica || [];
 
 <Layout navStyle="solid" title="Niveles Educativos">
 
-    <section class=" h-[60vh] min-h-[500px] w-full flex items-center justify-center NuevasTarjetasImagen text-center">
+    {/* Sección del Banner Principal */}
+    <section class="h-[50vh] md:h-[60vh] min-h-[400px] md:min-h-[500px] w-full flex items-center justify-center NuevasTarjetasImagen text-center">
 
         <div class="BannerOscuro bg-slate-900/40 z-10"></div>
 
@@ -19,13 +20,15 @@ const menuItems2 = academico?.items_basica || [];
                 class="BannerOscuro w-full h-full object-cover object-center"
         />
 
-        <div class="BannerContenido px-6 max-w-4xl mx-auto flex flex-col items-center mt-24">
+        {/* Contenido del Banner */}
+        <div class="BannerContenido px-6 max-w-4xl mx-auto flex flex-col items-center mt-12 md:mt-24">
 
-            <p class="SubtituloSmall text-white/90">
+            <p class="SubtituloSmall text-white/90 text-sm md:text-base">
                 {academico.bajada_principal}
             </p>
 
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif italic leading-tight text-white drop-shadow-md">
+            {/* Título: Reducimos el tamaño en móvil para evitar que se salga de la pantalla. */}
+            <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif italic leading-tight text-white drop-shadow-md">
                 {academico.titulo_principal}
             </h1>
 
@@ -33,17 +36,19 @@ const menuItems2 = academico?.items_basica || [];
 
     </section>
 
-    <section class="SectionContenido bg-stone-50">
-        <h2 class="SectionTitulo text-slate-900 mb-14 text-center">
+    {/* Primera Sección de Contenido */}
+    <section class="SectionContenido bg-stone-50 py-16 md:py-24 px-6">
+        <h2 class="SectionTitulo text-slate-900 mb-10 md:mb-14 text-center text-3xl md:text-4xl">
             {academico.titulo_seccion_1}
         </h2>
 
-        <div class="grid md:grid-cols-3 gap-10">
+        {/* Grid: Por defecto será 1 columna en móvil, y 3 en 'md:' o superior. */}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 max-w-6xl mx-auto">
 
             {menuItems.map((item: any, index: any) => (
-                    <div class="TarjetaFeature">
+                    <div class="TarjetaFeature p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300">
                         {/* Ícono */}
-                        <div class="ContenedorIconoTarjeta">{item.icono}</div>
+                        <div class="ContenedorIconoTarjeta mb-4">{item.icono}</div>
 
                         {/* Título */}
                         <h3 class="text-xl font-serif text-slate-900 mb-2 italic">
@@ -51,7 +56,7 @@ const menuItems2 = academico?.items_basica || [];
                         </h3>
 
                         {/* Descripción */}
-                        <p class="text-slate-600 font-light leading-relaxed">
+                        <p class="text-slate-600 font-light leading-relaxed text-sm">
                             {item.texto}
                         </p>
                     </div>
@@ -60,25 +65,27 @@ const menuItems2 = academico?.items_basica || [];
         </div>
     </section>
 
-    <section class="bg-white border-t border-stone-200 py-24 px-6">
+    {/* Segunda Sección de Contenido */}
+    <section class="bg-white border-t border-stone-200 py-16 md:py-24 px-6">
         <div class="max-w-7xl mx-auto">
 
             {/* Título de la Sección */}
-            <h2 class="SectionTitulo text-slate-900 italic mb-14 text-center">
+            <h2 class="SectionTitulo text-slate-900 italic mb-10 md:mb-14 text-center text-3xl md:text-4xl">
                 {academico.titulo_seccion_2}
             </h2>
 
             {/* Contenedor de las Tarjetas */}
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Grid: Por defecto será 1 columna en móvil (sm:grid-cols-2 para más grandes), y 2 o 3 en 'md:' o 'lg:'. */}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {menuItems2.map((item: any, index: any) => (
-                        <div class="TarjetaFeature">
+                        <div class="TarjetaFeature p-6 bg-stone-50 rounded-lg shadow-sm">
                             {/* Título de la Tarjeta */}
                             <h3 class="text-xl font-serif text-slate-900 mb-3 italic">
                                 {item.titulo}
                             </h3>
 
                             {/* Descripción */}
-                            <p class="text-slate-600 font-light leading-relaxed">
+                            <p class="text-slate-600 font-light leading-relaxed text-sm">
                                 {item.texto}
                             </p>
                         </div>
