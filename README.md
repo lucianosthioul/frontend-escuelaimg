@@ -1,5 +1,11 @@
 # Escuela Img Astro
 
+## Contribuciones
+
+Luciano: Homepage, HeaderComponent y su .js, Blog de noticias y Nosotros.
+
+Erwin: Academico, FooterComponent, Admisiones junto a su .js.
+
 ## 🚀 Estructura del proyecto
 
 Dentro del proyecto verás los siguientes archivos y carpetas:
